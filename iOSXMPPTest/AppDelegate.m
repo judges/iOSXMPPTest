@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "DDLog.h"
+#import "DDTTYLogger.h"
 
 @interface AppDelegate ()
 
@@ -17,7 +19,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [DDLog addLogger:[DDTTYLogger sharedInstance] withLogLevel: XMPP_LOG_FLAG_SEND_RECV];
     return YES;
+    
+    
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

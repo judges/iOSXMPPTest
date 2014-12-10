@@ -15,6 +15,7 @@
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
 #endif
 
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
 @implementation DDDispatchQueueLogFormatter
 {
