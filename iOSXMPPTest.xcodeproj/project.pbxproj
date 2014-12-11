@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4AC0EBF51A397DAE009C82AB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC0EBF41A397DAE009C82AB /* AudioToolbox.framework */; };
+		4AC0EBF81A398659009C82AB /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC0EBF71A398659009C82AB /* FriendsViewController.m */; };
 		4AC2A27D1A382D7200A57553 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC2A27C1A382D7200A57553 /* main.m */; };
 		4AC2A2801A382D7200A57553 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC2A27F1A382D7200A57553 /* AppDelegate.m */; };
 		4AC2A2831A382D7200A57553 /* iOSXMPPTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4AC2A2811A382D7200A57553 /* iOSXMPPTest.xcdatamodeld */; };
@@ -172,6 +174,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4AC0EBF41A397DAE009C82AB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		4AC0EBF61A398659009C82AB /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
+		4AC0EBF71A398659009C82AB /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
 		4AC2A2771A382D7200A57553 /* iOSXMPPTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSXMPPTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AC2A27B1A382D7200A57553 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AC2A27C1A382D7200A57553 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -490,6 +495,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AC0EBF51A397DAE009C82AB /* AudioToolbox.framework in Frameworks */,
 				4AF063F51A3838900046265D /* UIKit.framework in Frameworks */,
 				4AC2A4241A38347000A57553 /* libresolv.dylib in Frameworks */,
 				4AC2A4221A38346500A57553 /* Security.framework in Frameworks */,
@@ -511,6 +517,7 @@
 		4AC2A26E1A382D7200A57553 = {
 			isa = PBXGroup;
 			children = (
+				4AC0EBF41A397DAE009C82AB /* AudioToolbox.framework */,
 				4AC2A2791A382D7200A57553 /* iOSXMPPTest */,
 				4AC2A2961A382D7300A57553 /* iOSXMPPTestTests */,
 				4AC2A2781A382D7200A57553 /* Products */,
@@ -533,6 +540,8 @@
 				4AC2A27F1A382D7200A57553 /* AppDelegate.m */,
 				4AC2A2841A382D7200A57553 /* ViewController.h */,
 				4AC2A2851A382D7200A57553 /* ViewController.m */,
+				4AC0EBF61A398659009C82AB /* FriendsViewController.h */,
+				4AC0EBF71A398659009C82AB /* FriendsViewController.m */,
 				4AC2A2871A382D7200A57553 /* Main.storyboard */,
 				4AC2A28A1A382D7200A57553 /* Images.xcassets */,
 				4AC2A28C1A382D7200A57553 /* LaunchScreen.xib */,
@@ -1556,6 +1565,7 @@
 				4AC2A4101A3833EE00A57553 /* GCDAsyncSocket.m in Sources */,
 				4AC2A4021A3833EE00A57553 /* XMPPIQ.m in Sources */,
 				4AF063D41A3837C10046265D /* XMPPCapsCoreDataStorageObject.m in Sources */,
+				4AC0EBF81A398659009C82AB /* FriendsViewController.m in Sources */,
 				4AF063B71A3837C10046265D /* XMPPvCard.xcdatamodeld in Sources */,
 				4AF063941A3837C10046265D /* XMPPIncomingFileTransfer.m in Sources */,
 				4AF063D51A3837C10046265D /* XMPPCapsResourceCoreDataStorageObject.m in Sources */,
