@@ -148,10 +148,17 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message{
     NSString *string = [[message elementForName:@"body"] stringValue];
     if (string != nil) {
-        self.textView.text = [self.textView.text stringByAppendingString:[NSString stringWithFormat:@"\nTa：%@",string]];
+        [self playAlertSound];
+
+        NSString *ta = [message attributeStringValueForName:@"from" withDefaultValue:@"Ta"];
+        NSString *newTa = nil;
+        NSScanner *scanner = [NSScanner scannerWithString:ta];
+        if ([scanner scanUpToString:@"@" intoString:&newTa]) {
+            ta = newTa;
+        }
+        self.textView.text = [self.textView.text stringByAppendingString:[NSString stringWithFormat:@"\n%@：%@",ta,string]];
         [self.textView scrollRectToVisible:CGRectMake(0, self.textView.contentSize.height - 40, self.textView.bounds.size.width, 40) animated:NO];
         
-        [self playAlertSound];
     }
 }
 
