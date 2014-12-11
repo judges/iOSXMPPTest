@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A5859AA1A39A7CE001223C3 /* incoming.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4A5859A91A39A7CE001223C3 /* incoming.wav */; };
 		4AC0EBF51A397DAE009C82AB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC0EBF41A397DAE009C82AB /* AudioToolbox.framework */; };
 		4AC0EBF81A398659009C82AB /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC0EBF71A398659009C82AB /* FriendsViewController.m */; };
 		4AC2A27D1A382D7200A57553 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC2A27C1A382D7200A57553 /* main.m */; };
@@ -174,6 +175,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A5859A91A39A7CE001223C3 /* incoming.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = incoming.wav; sourceTree = "<group>"; };
 		4AC0EBF41A397DAE009C82AB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		4AC0EBF61A398659009C82AB /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
 		4AC0EBF71A398659009C82AB /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
@@ -546,6 +548,7 @@
 				4AC2A28A1A382D7200A57553 /* Images.xcassets */,
 				4AC2A28C1A382D7200A57553 /* LaunchScreen.xib */,
 				4AC2A2811A382D7200A57553 /* iOSXMPPTest.xcdatamodeld */,
+				4A5859A91A39A7CE001223C3 /* incoming.wav */,
 				4AC2A3841A3833ED00A57553 /* XMPP */,
 				4AC2A27A1A382D7200A57553 /* Supporting Files */,
 				4AC2A4261A3834BD00A57553 /* Framework */,
@@ -1540,6 +1543,7 @@
 			files = (
 				4AC2A2891A382D7200A57553 /* Main.storyboard in Resources */,
 				4AC2A28E1A382D7200A57553 /* LaunchScreen.xib in Resources */,
+				4A5859AA1A39A7CE001223C3 /* incoming.wav in Resources */,
 				4AC2A4191A3833EE00A57553 /* README.txt in Resources */,
 				4AC2A28B1A382D7200A57553 /* Images.xcassets in Resources */,
 			);

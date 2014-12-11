@@ -207,12 +207,12 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 #pragma mark - Event
 
 - (void)playAlertSound{
-//    static SystemSoundID soundObject;
-//    if (soundObject == 0) {
-//        CFURLRef soundURL = (__bridge CFURLRef)[[NSBundle mainBundle] URLForResource:@"sms-received1" withExtension:@"caf"];
-//        AudioServicesCreateSystemSoundID(soundURL, &soundObject);
-//    }
-    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+    static SystemSoundID soundObject;
+    if (soundObject == 0) {
+        CFURLRef soundURL = (__bridge CFURLRef)[[NSBundle mainBundle] URLForResource:@"incoming" withExtension:@"wav"];
+        AudioServicesCreateSystemSoundID(soundURL, &soundObject);
+    }
+    AudioServicesPlayAlertSound(soundObject);
 }
 
 
