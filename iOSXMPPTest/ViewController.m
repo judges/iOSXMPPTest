@@ -9,8 +9,8 @@
 #import "ViewController.h"
 #include <AudioToolbox/AudioToolbox.h>
 #include "FriendsViewController.h"
-#define kFriendID @"root@mit-pc"
-
+#define kFriendID @"root"
+#define kDomain @"@mit-pc"
 #define kUserID @"tom@mit-pc"
 #define kHostName @"214.214.1.45"
 #define kPassword @"123456"
@@ -36,7 +36,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
     [super viewDidLoad];
     
     password = kPassword;
-    
+
     myStream = [self createXMPPStreamWithJID:kUserID];
     
     [self setReconnect:myStream];
@@ -190,7 +190,8 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
     if (textField == self.friendTextField) {
         [textField resignFirstResponder];
     }else{
-        [self sendMessage:textField.text toUser:self.friendTextField.text];
+        NSString *messageString = [NSString stringWithFormat:@"%@%@",self.friendTextField.text,kDomain];
+        [self sendMessage:textField.text toUser:messageString];
         textField.text = nil;
     }
     
