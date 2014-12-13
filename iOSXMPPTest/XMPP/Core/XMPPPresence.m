@@ -40,7 +40,7 @@
 + (XMPPPresence *)presenceFromElement:(NSXMLElement *)element
 {
 	object_setClass(element, [XMPPPresence class]);
-	
+
 	return (XMPPPresence *)element;
 }
 

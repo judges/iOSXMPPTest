@@ -20,7 +20,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hbq-qH-DbS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1059" y="338.25"/>
+            <point key="canvasLocation" x="-1032" y="338"/>
         </scene>
         <!--消息-->
         <scene sceneID="ufC-wZ-h7g">
@@ -106,6 +106,30 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="Ypm-3d-acZ"/>
                                 </connections>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gIV-hQ-Wee">
+                                <rect key="frame" x="-36" y="-22" width="72" height="44"/>
+                                <state key="normal" title="下线(Unavailable)">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="365" width="145" height="44"/>
+                                </variation>
+                                <connections>
+                                    <action selector="presenceUnavailable:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Li9-KN-bcl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4M-0y-wQO">
+                                <rect key="frame" x="-36" y="-22" width="72" height="44"/>
+                                <state key="normal" title="上线（available）">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="314" width="146" height="44"/>
+                                </variation>
+                                <connections>
+                                    <action selector="presenceAvailable:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Ufb-Zl-tTE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.72692716700000004" green="0.85064313879999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -129,6 +153,8 @@
                                 <exclude reference="fo0-0W-drX"/>
                                 <exclude reference="3Wt-zx-Boa"/>
                                 <exclude reference="jok-M7-wZi"/>
+                                <exclude reference="gIV-hQ-Wee"/>
+                                <exclude reference="W4M-0y-wQO"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="oi2-PC-qn9"/>
@@ -146,6 +172,8 @@
                                 <include reference="fo0-0W-drX"/>
                                 <include reference="3Wt-zx-Boa"/>
                                 <include reference="jok-M7-wZi"/>
+                                <include reference="gIV-hQ-Wee"/>
+                                <include reference="W4M-0y-wQO"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="oi2-PC-qn9"/>
@@ -168,9 +196,11 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="availableButton" destination="W4M-0y-wQO" id="6EC-gQ-ZWt"/>
                         <outlet property="friendTextField" destination="jok-M7-wZi" id="BAQ-OA-qS9"/>
                         <outlet property="textField" destination="3Wt-zx-Boa" id="NaY-jX-Kui"/>
                         <outlet property="textView" destination="fo0-0W-drX" id="Eyz-36-Wqd"/>
+                        <outlet property="unavailableButton" destination="gIV-hQ-Wee" id="xfQ-Uc-HUB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -180,7 +210,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-529.5" y="338.25"/>
+            <point key="canvasLocation" x="-674" y="338"/>
         </scene>
         <!--我的好友-->
         <scene sceneID="hG1-AV-JfV">
@@ -225,7 +255,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hNN-Mc-N1N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="24" y="338.25"/>
+            <point key="canvasLocation" x="-313" y="338"/>
         </scene>
     </scenes>
 </document>

@@ -9,10 +9,13 @@
 #import "ViewController.h"
 #include <AudioToolbox/AudioToolbox.h>
 #include "FriendsViewController.h"
+#import <objc/runtime.h>
+
 #define kFriendID @"root"
-#define kDomain @"@mit-pc"
-#define kUserID @"tom@mit-pc"
-#define kHostName @"214.214.1.45"
+#define kDomain @"@tom-mac"
+
+#define kUserID [NSString stringWithFormat:@"%@%@",@"test_beta",kDomain]
+#define kHostName @"214.214.1.42"
 #define kPassword @"123456"
 
 static NSString *kFriendJIDKey = @"kFriendJIDKey";
@@ -27,6 +30,8 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 @property (strong, nonatomic) IBOutlet UITextField *textField;
 @property (strong, nonatomic) IBOutlet UIButton *sendButton;
 @property (strong, nonatomic) IBOutlet UITextField *friendTextField;
+@property (strong, nonatomic) IBOutlet UIButton *availableButton;
+@property (strong, nonatomic) IBOutlet UIButton *unavailableButton;
 
 @end
 
@@ -85,7 +90,16 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 - (IBAction)hiddenKeybord:(UITapGestureRecognizer *)sender {
     [self.textField resignFirstResponder];
 }
-
+//online上线
+- (IBAction)presenceAvailable:(id)sender {
+    XMPPPresence *presence = [XMPPPresence presenceWithType:@"available"];
+    [myStream sendElement:presence];
+}
+//offline下线
+- (IBAction)presenceUnavailable:(id)sender {
+    XMPPPresence *presence = [XMPPPresence presenceWithType:@"unavailable"];
+    [myStream sendElement:presence];
+}
 
 - (void)sendMessage:(NSString *) string toUser:(NSString *) user {
 //    <message type="chat" to="xiaoming@example.com">
@@ -163,17 +177,28 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 }
 
 - (void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence{
-
+    NSString *presenceFromUser = presence.to.bare;
+    if ([presenceFromUser isEqual:sender.myJID.bare] ) {
+        if ([[presence type] isEqual:@"unavailable"]) {
+      
+            self.unavailableButton.selected = YES;
+            self.availableButton.selected = NO;
+        }else{
+            self.unavailableButton.selected = NO;
+            self.availableButton.selected = YES;
+        }
+    }
+    
 }
 
 #pragma mark - XMPPReconnectDelegate
 
 - (void)xmppReconnect:(XMPPReconnect *)sender didDetectAccidentalDisconnect:(SCNetworkConnectionFlags)connectionFlags{
-    NSLog(@"连接中断:%u",connectionFlags);
+    NSLog(@"连接中断:SCNetworkConnectionFlags = %u",connectionFlags);
 }
 
 - (BOOL)xmppReconnect:(XMPPReconnect *)sender shouldAttemptAutoReconnect:(SCNetworkConnectionFlags)connectionFlags{
-    NSLog(@"尝试自动重新连接:%u",connectionFlags);
+    NSLog(@"尝试自动重新连接:SCNetworkConnectionFlags = %u",connectionFlags);
 //    [self connect:myStream];
     return YES;
 }
