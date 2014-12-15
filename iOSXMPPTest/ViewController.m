@@ -8,14 +8,15 @@
 
 #import "ViewController.h"
 #include <AudioToolbox/AudioToolbox.h>
-#include "FriendsViewController.h"
+#import "FriendsViewController.h"
+#import "RegistrationViewController.h"
 #import <objc/runtime.h>
 
 #define kFriendID @"root"
-#define kDomain @"@tom-mac"
+#define kDomain @"@mit-pc"
 
-#define kUserID [NSString stringWithFormat:@"%@%@",@"test_beta",kDomain]
-#define kHostName @"214.214.1.42"
+#define kUserID [NSString stringWithFormat:@"%@%@",@"tom1",kDomain]
+#define kHostName @"214.214.1.45"
 #define kPassword @"123456"
 
 static NSString *kFriendJIDKey = @"kFriendJIDKey";
@@ -45,7 +46,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
     myStream = [self createXMPPStreamWithJID:kUserID];
     
     [self setReconnect:myStream];
-
+    
     [self connect:myStream];
 
     NSString *string = [[NSUserDefaults standardUserDefaults] stringForKey:kFriendJIDKey];
@@ -121,7 +122,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 
 - (void)xmppStreamDidConnect:(XMPPStream *)sender{
     NSError *error = nil;
-     //Authenticating
+//     Authenticating
     [myStream authenticateWithPassword:password error:&error];
     if (error != nil) {
         NSLog(@"authenticateWithPassword : error:%@ %@",error,error.userInfo);
@@ -249,6 +250,9 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
         vc.myStream = myStream;
 
         [myStream addDelegate:vc delegateQueue:dispatch_get_main_queue()];
+    }else if ([segue.identifier isEqual:@"presentRegisterView"]){
+        RegistrationViewController *vc = (RegistrationViewController *)segue.destinationViewController;
+        vc.stream = myStream;
     }
     
 }
