@@ -31,6 +31,7 @@
 }
 
 - (IBAction)handleDismissButton:(id)sender {
+    
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
@@ -39,13 +40,12 @@
 }
 
 - (void)sendElementWithSetUserInfo{
-    
-//    <iq id="y0Huv-45" to="mit-pc" type="set" from="mit-pc/55725971">
+//    <iq id="ymGqq-6" to="mit-pc" type="set" from="mit-pc/fafbfe00">
 //    <query xmlns="jabber:iq:register">
-//    <username>god34</username>
-//    <sex/>
+//    <username>dddfff</username>
 //    <email/>
 //    <name/>
+//    <sex>sexvalue</sex>
 //    <password>112233</password>
 //    </query>
 //    </iq>
@@ -61,7 +61,7 @@
     [query addChild:gentle];
     
     XMPPIQ *iq = [[XMPPIQ alloc] initWithType:@"set" child:query];
-    [iq addAttributeWithName:@"id" stringValue:@"reg1"];
+    [iq addAttributeWithName:@"id" stringValue:@"regTest1"];
     [iq addAttributeWithName:@"to" stringValue:@"mit-pc"];
 
     [self.stream sendElement:iq];
@@ -76,7 +76,17 @@
 }
 
 - (BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq{
-    
+    NSLog(@"注册成功");
+    //断开流
+//    NSXMLElement *stream = [[NSXMLElement alloc] initWithXMLString:@"<stream/>" error:NULL];
+    NSXMLElement *stream = [NSXMLElement elementWithName:@"stream"];
+    [self.stream enumerateModulesWithBlock:^(XMPPModule *module, NSUInteger idx, BOOL *stop) {
+        if ([module isKindOfClass:[XMPPReconnect class]]) {
+            [module deactivate];
+        }
+    }];
+    [self.stream disconnectAfterSending];
+    [self.stream sendElement:stream];
     return YES;
 }
 

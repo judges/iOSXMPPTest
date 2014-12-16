@@ -26,6 +26,8 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 @interface ViewController ()<XMPPStreamDelegate,UIAlertViewDelegate,XMPPReconnectDelegate,UITextFieldDelegate>{
     XMPPStream *myStream;
     NSString *password;
+    NSUInteger reconnectCount;
+    dispatch_semaphore_t sema;
 }
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) IBOutlet UITextField *textField;
@@ -40,7 +42,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     password = kPassword;
 
     myStream = [self createXMPPStreamWithJID:kUserID];
@@ -57,11 +59,15 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
     self.friendTextField.text = string;
 }
 
+
 - (XMPPStream *)createXMPPStreamWithJID:(NSString *)jid{
     XMPPStream *stream = [[XMPPStream alloc] init];
     //Configuring the connection
     stream.hostName = kHostName;
-    stream.myJID = [XMPPJID jidWithString:jid];
+
+    XMPPJID *myJID = [XMPPJID jidWithUser:@"tom1" domain:@"mit-pc" resource:[self generateNewUUIDResource]];
+    
+    stream.myJID = myJID;
 
     //Adding Delegates
     [stream addDelegate:self delegateQueue:dispatch_get_main_queue()];
@@ -123,10 +129,19 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 - (void)xmppStreamDidConnect:(XMPPStream *)sender{
     NSError *error = nil;
 //     Authenticating
-    [myStream authenticateWithPassword:password error:&error];
+//    [myStream authenticateWithPassword:password error:&error];
+    
+    if ([myStream supportsAnonymousAuthentication]) {
+        //匿名验证
+        [myStream authenticateAnonymously:&error];
+    }
     if (error != nil) {
         NSLog(@"authenticateWithPassword : error:%@ %@",error,error.userInfo);
     }
+}
+
+- (void)xmppStream:(XMPPStream *)sender willSecureWithSettings:(NSMutableDictionary *)settings{
+    
 }
 
 - (void)xmppStreamConnectDidTimeout:(XMPPStream *)sender{
@@ -135,7 +150,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 }
 
 - (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error{
-    
+    NSLog(@"xmppStreamDidDisconnect:流已断开");
 }
 
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender{
@@ -153,6 +168,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 
 }
 - (void)xmppStream:(XMPPStream *)sender didFailToSendMessage:(XMPPMessage *)message error:(NSError *)error{
+    
     self.textView.text = [self.textView.text stringByAppendingString:[NSString stringWithFormat:@"----%@(%@)",@"(发送失败)",error.userInfo]];
 }
 
@@ -192,13 +208,27 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
     
 }
 
+- (NSString *)xmppStream:(XMPPStream *)sender alternativeResourceForConflictingResource:(NSString *)conflictingResource{
+   
+    return [self generateNewUUIDResource];
+}
+
+- (NSString *)generateNewUUIDResource{
+    NSString *uuid = [[[NSUUID UUID].UUIDString substringWithRange:NSMakeRange(0, 8)] lowercaseString];
+    UIDevice *device = [UIDevice currentDevice];
+    NSString *resource = [NSString stringWithFormat:@"%@%@",device.model,uuid];
+    return resource;
+}
+
 #pragma mark - XMPPReconnectDelegate
 
 - (void)xmppReconnect:(XMPPReconnect *)sender didDetectAccidentalDisconnect:(SCNetworkConnectionFlags)connectionFlags{
+
     NSLog(@"连接中断:SCNetworkConnectionFlags = %u",connectionFlags);
 }
 
 - (BOOL)xmppReconnect:(XMPPReconnect *)sender shouldAttemptAutoReconnect:(SCNetworkConnectionFlags)connectionFlags{
+
     NSLog(@"尝试自动重新连接:SCNetworkConnectionFlags = %u",connectionFlags);
 //    [self connect:myStream];
     return YES;
@@ -207,7 +237,11 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 #pragma mark - UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex{
-    [self connect:myStream];
+    if (alertView.tag == 1204) {
+
+    }else{
+        [self connect:myStream];
+    }
 }
 
 #pragma mark - UITextFieldDelegate
