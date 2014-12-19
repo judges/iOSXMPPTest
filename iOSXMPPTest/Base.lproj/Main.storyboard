@@ -26,7 +26,7 @@
         <!--消息-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QxV-he-c4R"/>
                         <viewControllerLayoutGuide type="bottom" id="L8i-FK-0wo"/>
@@ -66,6 +66,10 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4M-0y-wQO">
                                         <rect key="frame" x="15" y="441" width="139" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="139" id="aXW-4b-Rbe"/>
+                                            <constraint firstAttribute="height" constant="30" id="ubt-LV-FY3"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="连接"/>
                                         <connections>
@@ -75,10 +79,17 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TTH-Mb-r8R">
                                         <rect key="frame" x="168" y="442" width="137" height="30"/>
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="K2j-1H-K2B"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="137" placeholder="YES" id="c7A-jh-rh3"/>
                                             <constraint firstAttribute="width" constant="137" id="yaB-nT-Tkh"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="断开"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="c7A-jh-rh3"/>
+                                            </mask>
+                                        </variation>
                                         <connections>
                                             <action selector="presenceUnavailable:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="jFV-sM-DCV"/>
                                         </connections>
@@ -87,6 +98,9 @@
                                         <rect key="frame" x="15" y="58" width="290" height="305"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="305" id="Bam-AH-Dp2"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
@@ -117,26 +131,26 @@
                                 <constraints>
                                     <constraint firstItem="jok-M7-wZi" firstAttribute="top" secondItem="fo0-0W-drX" secondAttribute="bottom" constant="8" symbolic="YES" id="2Jd-Sy-pic"/>
                                     <constraint firstItem="fo0-0W-drX" firstAttribute="trailing" secondItem="TTH-Mb-r8R" secondAttribute="trailing" id="2Wk-QZ-3Yz"/>
-                                    <constraint firstItem="jok-M7-wZi" firstAttribute="centerX" secondItem="fo0-0W-drX" secondAttribute="centerX" id="67L-7M-G4a"/>
-                                    <constraint firstItem="3Wt-zx-Boa" firstAttribute="top" secondItem="UAM-ld-Mlq" secondAttribute="top" constant="20" id="AVG-4B-SwS"/>
+                                    <constraint firstItem="jok-M7-wZi" firstAttribute="trailing" secondItem="fo0-0W-drX" secondAttribute="trailing" constant="1" id="5lb-SZ-tUO"/>
                                     <constraint firstItem="jok-M7-wZi" firstAttribute="trailing" secondItem="vDF-bu-KJZ" secondAttribute="trailing" id="IGG-aG-6b4"/>
                                     <constraint firstItem="vDF-bu-KJZ" firstAttribute="centerX" secondItem="TTH-Mb-r8R" secondAttribute="centerX" id="Kmb-rj-YVc"/>
-                                    <constraint firstItem="fo0-0W-drX" firstAttribute="trailing" secondItem="3Wt-zx-Boa" secondAttribute="trailing" id="L6k-Vx-w0l"/>
+                                    <constraint firstItem="vDF-bu-KJZ" firstAttribute="width" secondItem="eWz-at-66h" secondAttribute="width" id="MvV-WB-kdi"/>
+                                    <constraint firstItem="3Wt-zx-Boa" firstAttribute="leading" secondItem="fo0-0W-drX" secondAttribute="leading" id="NuG-hG-b56"/>
                                     <constraint firstItem="eWz-at-66h" firstAttribute="centerX" secondItem="W4M-0y-wQO" secondAttribute="centerX" id="P0P-93-aPU"/>
                                     <constraint firstItem="W4M-0y-wQO" firstAttribute="top" secondItem="eWz-at-66h" secondAttribute="bottom" constant="2" id="SYU-q2-NCA"/>
                                     <constraint firstAttribute="bottom" secondItem="TTH-Mb-r8R" secondAttribute="bottom" id="TL5-py-ft2"/>
                                     <constraint firstItem="jok-M7-wZi" firstAttribute="leading" secondItem="W4M-0y-wQO" secondAttribute="leading" id="U5o-Oz-f8v"/>
+                                    <constraint firstItem="3Wt-zx-Boa" firstAttribute="top" secondItem="UAM-ld-Mlq" secondAttribute="top" constant="20" id="VCS-r1-BB6"/>
+                                    <constraint firstItem="3Wt-zx-Boa" firstAttribute="trailing" secondItem="fo0-0W-drX" secondAttribute="trailing" id="X9W-nO-yjk"/>
                                     <constraint firstItem="vDF-bu-KJZ" firstAttribute="baseline" secondItem="eWz-at-66h" secondAttribute="baseline" id="XOr-G2-6sA"/>
-                                    <constraint firstItem="3Wt-zx-Boa" firstAttribute="leading" secondItem="fo0-0W-drX" secondAttribute="leading" id="YRf-9Y-hD6"/>
-                                    <constraint firstAttribute="trailing" secondItem="jok-M7-wZi" secondAttribute="trailing" constant="14" id="cJk-m1-wxO"/>
                                     <constraint firstItem="W4M-0y-wQO" firstAttribute="trailing" secondItem="eWz-at-66h" secondAttribute="trailing" id="d7d-4i-Ie6"/>
-                                    <constraint firstItem="fo0-0W-drX" firstAttribute="centerX" secondItem="UAM-ld-Mlq" secondAttribute="centerX" id="dj3-Bq-fxq"/>
-                                    <constraint firstItem="eWz-at-66h" firstAttribute="leading" secondItem="UAM-ld-Mlq" secondAttribute="leading" constant="14" id="fRE-dL-mFq"/>
-                                    <constraint firstItem="fo0-0W-drX" firstAttribute="top" secondItem="3Wt-zx-Boa" secondAttribute="bottom" constant="8" symbolic="YES" id="h5n-Un-TLz"/>
+                                    <constraint firstItem="3Wt-zx-Boa" firstAttribute="leading" secondItem="UAM-ld-Mlq" secondAttribute="leading" constant="15" id="gv9-hi-tjk"/>
                                     <constraint firstItem="TTH-Mb-r8R" firstAttribute="top" secondItem="vDF-bu-KJZ" secondAttribute="bottom" constant="3" id="iYW-Ok-5lB"/>
+                                    <constraint firstItem="3Wt-zx-Boa" firstAttribute="centerX" secondItem="UAM-ld-Mlq" secondAttribute="centerX" id="iio-v5-Qbj"/>
                                     <constraint firstItem="vDF-bu-KJZ" firstAttribute="leading" secondItem="eWz-at-66h" secondAttribute="trailing" constant="12" id="nLc-Pa-cIF"/>
+                                    <constraint firstAttribute="trailing" secondItem="3Wt-zx-Boa" secondAttribute="trailing" constant="15" id="oQO-nc-QSu"/>
                                     <constraint firstItem="fo0-0W-drX" firstAttribute="leading" secondItem="jok-M7-wZi" secondAttribute="leading" id="sR8-0O-aVC"/>
-                                    <constraint firstItem="eWz-at-66h" firstAttribute="top" secondItem="UAM-ld-Mlq" secondAttribute="top" constant="409" id="uka-nJ-dgI"/>
+                                    <constraint firstItem="fo0-0W-drX" firstAttribute="top" secondItem="3Wt-zx-Boa" secondAttribute="bottom" constant="8" symbolic="YES" id="tW1-U6-vpV"/>
                                     <constraint firstItem="eWz-at-66h" firstAttribute="top" secondItem="jok-M7-wZi" secondAttribute="bottom" constant="8" symbolic="YES" id="vEB-Y4-wPD"/>
                                     <constraint firstItem="W4M-0y-wQO" firstAttribute="bottom" secondItem="UAM-ld-Mlq" secondAttribute="bottomMargin" constant="-1" id="xQp-hw-Fx7"/>
                                 </constraints>
@@ -155,6 +169,7 @@
                             <constraint firstItem="UAM-ld-Mlq" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="hZZ-bh-s4J"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="消息" id="zZB-xe-4rv">
                         <barButtonItem key="leftBarButtonItem" title="注册" id="oBf-xZ-z58"/>
                         <barButtonItem key="rightBarButtonItem" title="我的好友" id="S5U-yT-GeU"/>

@@ -83,8 +83,19 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
     [self setReconnect:myStream];
     
     [self connect:myStream];
+    
+    [self extendedLayoutForView];
 }
 
+- (void)extendedLayoutForView{
+    //使用iOS7自动延展布局
+    if ([UIViewController instancesRespondToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
+        self.automaticallyAdjustsScrollViewInsets = YES;
+        self.edgesForExtendedLayout = (UIRectEdgeTop | UIRectEdgeBottom);
+    }
+}
+
+#pragma mark - RegisterNotification
 - (void)registerForKeyboardNotifications
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
@@ -102,8 +113,10 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 - (void)keyboardWasShown:(NSNotification*)aNotification
 {
     NSDictionary* info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    //if use
+    //UIKeyboardFrameBeginUserInfoKey height constraint to 184.0
+    //UIKeyboardFrameEndUserInfoKey height from 184.0 to 251.5
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    //iOS7高度延展了64
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(64.0, 0.0, kbSize.height, 0.0);
     _scrollView.contentInset = contentInsets;
     _scrollView.scrollIndicatorInsets = contentInsets;
