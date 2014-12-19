@@ -396,12 +396,16 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     activeField = nil;
 
+    
     if (textField == self.friendTextField) {
-        [[NSUserDefaults standardUserDefaults] setObject:self.friendTextField.text forKey:kFriendJIDKey];
+        [[NSUserDefaults standardUserDefaults] setObject:textField.text forKey:kFriendJIDKey];
+        myStream.myJID = [XMPPJID jidWithUser:textField.text domain:kDomain resource:@"iPhone"];
     }else if (textField == self.senderIDTextField){
-        [[NSUserDefaults standardUserDefaults] setObject:self.senderIDTextField.text forKey:kUserIDKey];
+        [[NSUserDefaults standardUserDefaults] setObject:textField.text forKey:kUserIDKey];
+        myStream.myJID = [XMPPJID jidWithUser:textField.text domain:kDomain resource:@"iPhone"];
     }else if (textField == self.senderPasswordTextField){
-        [[NSUserDefaults standardUserDefaults] setObject:self.senderPasswordTextField.text forKey:kPasswordKey];
+        [[NSUserDefaults standardUserDefaults] setObject:textField.text forKey:kPasswordKey];
+        password = textField.text;
     }
 }
 
