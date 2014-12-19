@@ -164,6 +164,7 @@
 		4AF063F21A3837C10046265D /* NSXMLElement+XEP_0335.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF063901A3837C10046265D /* NSXMLElement+XEP_0335.m */; };
 		4AF063F51A3838900046265D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF063F41A3838900046265D /* UIKit.framework */; };
 		4AF08CBC1A440AA2001BBA52 /* AutoColoseInfoDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF08CBB1A440AA2001BBA52 /* AutoColoseInfoDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4AF08CBE1A445954001BBA52 /* XMPP(IM)Roster.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4AF08CBD1A445954001BBA52 /* XMPP(IM)Roster.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -496,6 +497,7 @@
 		4AF063F71A3839F40046265D /* iOSXMPPTest_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSXMPPTest_Prefix.pch; sourceTree = "<group>"; };
 		4AF08CBA1A440AA2001BBA52 /* AutoColoseInfoDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoColoseInfoDialog.h; sourceTree = "<group>"; };
 		4AF08CBB1A440AA2001BBA52 /* AutoColoseInfoDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoColoseInfoDialog.m; sourceTree = "<group>"; };
+		4AF08CBD1A445954001BBA52 /* XMPP(IM)Roster.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "XMPP(IM)Roster.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -554,6 +556,7 @@
 				4AC0EBF71A398659009C82AB /* FriendsViewController.m */,
 				4AF08CBA1A440AA2001BBA52 /* AutoColoseInfoDialog.h */,
 				4AF08CBB1A440AA2001BBA52 /* AutoColoseInfoDialog.m */,
+				4AF08CBD1A445954001BBA52 /* XMPP(IM)Roster.txt */,
 				4AC2A2871A382D7200A57553 /* Main.storyboard */,
 				4AC2A28A1A382D7200A57553 /* Images.xcassets */,
 				4AC2A28C1A382D7200A57553 /* LaunchScreen.xib */,
@@ -1556,6 +1559,7 @@
 				4A5859AA1A39A7CE001223C3 /* incoming.wav in Resources */,
 				4AC2A4191A3833EE00A57553 /* README.txt in Resources */,
 				4AC2A28B1A382D7200A57553 /* Images.xcassets in Resources */,
+				4AF08CBE1A445954001BBA52 /* XMPP(IM)Roster.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

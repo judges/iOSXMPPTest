@@ -1,0 +1,90 @@
+获取名册Roster Get
+C: <iq from='juliet@example.com/balcony'
+       id='bv1bs71f'
+       type='get'>
+    <query xmlns='jabber:iq:roster'/>
+  </iq>
+返回名册Roster Result
+S: <iq id='bv1bs71f'
+       to='juliet@example.com/chamber'
+       type='result'>
+    <query xmlns='jabber:iq:roster' ver='ver7'>
+      <item jid='nurse@example.com'/>
+      <item jid='romeo@example.net'/>
+    </query>
+  </iq>
+客户端修改名册Roster Set
+C: <iq from='juliet@example.com/balcony'
+       id='rs1'
+       type='set'>
+    <query xmlns='jabber:iq:roster'>
+      <item jid='nurse@example.com'/>
+    </query>
+  </iq>
+服务器修改客户端名册Roster Push
+S: <iq id='a78b4q6ha463'
+       to='juliet@example.com/chamber'
+       type='set'>
+    <query xmlns='jabber:iq:roster'>
+      <item jid='nurse@example.com'/>
+    </query>
+  </iq>
+
+登录获取名册Retrieving the Roster on Login
+C: <iq from='juliet@example.com/balcony'
+       id='hu2bac18'
+       type='get'>
+     <query xmlns='jabber:iq:roster'/>
+   </iq>
+S: <iq id='hu2bac18'
+       to='juliet@example.com/balcony'
+       type='result'>
+     <query xmlns='jabber:iq:roster' ver='ver11'>
+       <item jid='romeo@example.net'
+             name='Romeo'
+             subscription='both'>
+         <group>Friends</group>
+       </item>
+       <item jid='mercutio@example.com'
+             name='Mercutio'
+             subscription='from'/>
+       <item jid='benvolio@example.net'
+             name='Benvolio'
+             subscription='both'/>
+     </query>
+   </iq>
+
+
+
+添加联系人Adding a Roster Item
+C: <iq from='juliet@example.com/balcony'
+       id='ph1xaz53'
+       type='set'>
+     <query xmlns='jabber:iq:roster'>
+       <item jid='nurse@example.com'
+             name='Nurse'>
+         <group>Servants</group>
+       </item>
+     </query>
+   </iq>
+更新联系人Updating a Roster Item
+C: <iq from='juliet@example.com/balcony'
+       id='di43b2x9'
+       type='set'>
+     <query xmlns='jabber:iq:roster'>
+       <item jid='romeo@example.net'
+             name='Romeo'>
+         <group>Friends</group>
+         <group>Lovers</group>
+       </item>
+     </query>
+   </iq>
+删除联系人Deleting a Roster Item
+C: <iq from='juliet@example.com/balcony'
+       id='hm4hs97y'
+       type='set'>
+     <query xmlns='jabber:iq:roster'>
+       <item jid='nurse@example.com'
+             subscription='remove'/>
+     </query>
+   </iq>
