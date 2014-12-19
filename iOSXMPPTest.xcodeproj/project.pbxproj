@@ -163,6 +163,7 @@
 		4AF063F11A3837C10046265D /* XMPPMessage+XEP_0333.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF0638D1A3837C10046265D /* XMPPMessage+XEP_0333.m */; };
 		4AF063F21A3837C10046265D /* NSXMLElement+XEP_0335.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF063901A3837C10046265D /* NSXMLElement+XEP_0335.m */; };
 		4AF063F51A3838900046265D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF063F41A3838900046265D /* UIKit.framework */; };
+		4AF08CBC1A440AA2001BBA52 /* AutoColoseInfoDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF08CBB1A440AA2001BBA52 /* AutoColoseInfoDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -493,6 +494,8 @@
 		4AF063F31A3837F20046265D /* XMPPFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMPPFramework.h; sourceTree = "<group>"; };
 		4AF063F41A3838900046265D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4AF063F71A3839F40046265D /* iOSXMPPTest_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSXMPPTest_Prefix.pch; sourceTree = "<group>"; };
+		4AF08CBA1A440AA2001BBA52 /* AutoColoseInfoDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoColoseInfoDialog.h; sourceTree = "<group>"; };
+		4AF08CBB1A440AA2001BBA52 /* AutoColoseInfoDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoColoseInfoDialog.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -549,6 +552,8 @@
 				4AD92CAE1A3EB00600719794 /* RegistrationViewController.m */,
 				4AC0EBF61A398659009C82AB /* FriendsViewController.h */,
 				4AC0EBF71A398659009C82AB /* FriendsViewController.m */,
+				4AF08CBA1A440AA2001BBA52 /* AutoColoseInfoDialog.h */,
+				4AF08CBB1A440AA2001BBA52 /* AutoColoseInfoDialog.m */,
 				4AC2A2871A382D7200A57553 /* Main.storyboard */,
 				4AC2A28A1A382D7200A57553 /* Images.xcassets */,
 				4AC2A28C1A382D7200A57553 /* LaunchScreen.xib */,
@@ -1633,6 +1638,7 @@
 				4AF063E91A3837C10046265D /* NSXMLElement+XEP_0203.m in Sources */,
 				4AF063B51A3837C10046265D /* XMPPMUC.m in Sources */,
 				4AF063DA1A3837C10046265D /* XMPPMessageArchivingCoreDataStorage.m in Sources */,
+				4AF08CBC1A440AA2001BBA52 /* AutoColoseInfoDialog.m in Sources */,
 				4AF063A51A3837C10046265D /* XMPPJabberRPCModule.m in Sources */,
 				4AF063AB1A3837C10046265D /* XMPPRoomMessageCoreDataStorageObject.m in Sources */,
 				4AF063B31A3837C10046265D /* XMPPRoomOccupantMemoryStorageObject.m in Sources */,

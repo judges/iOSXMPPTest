@@ -11,15 +11,18 @@
 #import "FriendsViewController.h"
 #import "RegistrationViewController.h"
 #import <objc/runtime.h>
-
+#import "AutoColoseInfoDialog.h"
 #define kFriendID @"root"
-#define kDomain @"tom-mac"
-#define kHostName @"214.214.1.42"
+#define kDomain @"mit-pc"
+#define kHostName @"214.214.1.100"
 
-#define kUserID @"Test_Beta"
-#define kPassword @"123456"
+#define kUserID @"qqqqqq"
+#define kPassword @"qqqqqq"
 
 static NSString *kFriendJIDKey = @"kFriendJIDKey";
+static NSString *kUserIDKey = @"kUserIDKey";
+static NSString *kPasswordKey = @"kPasswordKey";
+
 //XMPP Logging
 static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 
@@ -35,6 +38,8 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 @property (strong, nonatomic) IBOutlet UITextField *friendTextField;
 @property (strong, nonatomic) IBOutlet UIButton *availableButton;
 @property (strong, nonatomic) IBOutlet UIButton *unavailableButton;
+@property (strong, nonatomic) IBOutlet UITextField *senderIDTextField;
+@property (strong, nonatomic) IBOutlet UITextField *senderPasswordTextField;
 
 @end
 
@@ -57,8 +62,28 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
         [[NSUserDefaults standardUserDefaults] setObject:string forKey:kFriendJIDKey];
     }
     self.friendTextField.text = string;
+    
+    NSString *senderID = [[NSUserDefaults standardUserDefaults] stringForKey:kUserIDKey];
+    if (senderID == nil) {
+        senderID = kUserID;
+        [[NSUserDefaults standardUserDefaults] setObject:string forKey:kUserIDKey];
+    }
+    self.senderIDTextField.text = senderID;
+    
+    NSString *senderPassword = [[NSUserDefaults standardUserDefaults] stringForKey:kPasswordKey];
+    if (senderPassword == nil) {
+        senderPassword = kPassword;
+        [[NSUserDefaults standardUserDefaults] setObject:string forKey:kPasswordKey];
+    }
+    self.senderPasswordTextField.text = senderPassword;
 }
 
+- (IBAction)jidTextField:(UITextField *)sender {
+    myStream.myJID = [XMPPJID jidWithUser:sender.text domain:kDomain resource:@"iPhone"];
+}
+- (IBAction)passwordTextField:(UITextField *)sender {
+    password = sender.text;
+}
 
 - (XMPPStream *)createXMPPStreamWithJID:(NSString *)jid{
     XMPPStream *stream = [[XMPPStream alloc] init];
@@ -95,7 +120,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 }
 
 - (IBAction)hiddenKeybord:(UITapGestureRecognizer *)sender {
-    [self.textField resignFirstResponder];
+    [self.view endEditing:YES];
 }
 //online上线
 - (IBAction)presenceAvailable:(id)sender {
@@ -114,7 +139,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 //    <message type="chat" to="xiaoming@example.com">
 //    　　<body>Hello World!<body />
 //    <message />
-    self.textView.text = [self.textView.text stringByAppendingString:[NSString stringWithFormat:@"\n我：%@",string]];
+    self.textView.text = [self.textView.text stringByAppendingString:[NSString stringWithFormat:@"\n我(%@)：%@",myStream.myJID.user,string]];
     [self.textView scrollRectToVisible:CGRectMake(0, self.textView.contentSize.height - 40, self.textView.bounds.size.width, 40) animated:NO];
     
     NSXMLElement *body = [NSXMLElement elementWithName:@"body" stringValue:string];
@@ -136,7 +161,11 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 //    if ([myStream supportsAnonymousAuthentication]) {
 //        [myStream authenticateAnonymously:&error];
 //    }
-
+  
+        
+        self.unavailableButton.enabled = YES;
+        self.availableButton.enabled = NO;
+   
 
     
     id<XMPPSASLAuthentication> auth = nil;
@@ -173,15 +202,25 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 
 - (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error{
     NSLog(@"xmppStreamDidDisconnect:流已断开");
+    [AutoColoseInfoDialog popUpDialog:@"xmppStreamDidDisconnect流已断开" withView:self.view];
+
+    self.unavailableButton.enabled = NO;
+    self.availableButton.enabled = YES;
 }
 
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender{
     NSLog(@"验证成功");
+    [AutoColoseInfoDialog popUpDialog:@"验证成功" withView:self.view];
     XMPPPresence *presence = [XMPPPresence presenceWithType:@"available"];
     [myStream sendElement:presence];
 }
 - (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(NSXMLElement *)error{
+    
     NSLog(@"验证失败:%@",error);
+    [AutoColoseInfoDialog popUpDialog:@"验证失败" withView:self.view];
+
+    self.unavailableButton.enabled = YES;
+    self.availableButton.enabled = YES;
 }
 
 - (void)xmppStream:(XMPPStream *)sender didSendMessage:(XMPPMessage *)message{
@@ -212,7 +251,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 //        [sender sendElement:retIq];
 //    }
     
-  
+    
     
     
     return YES;
@@ -237,14 +276,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 - (void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence{
     NSString *presenceFromUser = presence.to.bare;
     if ([presenceFromUser isEqual:sender.myJID.bare] ) {
-        if ([[presence type] isEqual:@"unavailable"]) {
-      
-            self.unavailableButton.selected = YES;
-            self.availableButton.selected = NO;
-        }else{
-            self.unavailableButton.selected = NO;
-            self.availableButton.selected = YES;
-        }
+     
     }
     
 }
@@ -264,11 +296,13 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 #pragma mark - XMPPReconnectDelegate
 
 - (void)xmppReconnect:(XMPPReconnect *)sender didDetectAccidentalDisconnect:(SCNetworkConnectionFlags)connectionFlags{
+    [AutoColoseInfoDialog popUpDialog:@"连接中断" withView:self.view];
 
     NSLog(@"连接中断:SCNetworkConnectionFlags = %u",connectionFlags);
 }
 
 - (BOOL)xmppReconnect:(XMPPReconnect *)sender shouldAttemptAutoReconnect:(SCNetworkConnectionFlags)connectionFlags{
+    [AutoColoseInfoDialog popUpDialog:@"尝试自动重新连接" withView:self.view];
 
     NSLog(@"尝试自动重新连接:SCNetworkConnectionFlags = %u",connectionFlags);
 //    [self connect:myStream];
@@ -302,7 +336,10 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     if (textField == self.friendTextField) {
         [[NSUserDefaults standardUserDefaults] setObject:self.friendTextField.text forKey:kFriendJIDKey];
-
+    }else if (textField == self.senderIDTextField){
+        [[NSUserDefaults standardUserDefaults] setObject:self.senderIDTextField.text forKey:kUserIDKey];
+    }else if (textField == self.senderPasswordTextField){
+        [[NSUserDefaults standardUserDefaults] setObject:self.senderPasswordTextField.text forKey:kPasswordKey];
     }
 }
 
