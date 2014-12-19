@@ -35,129 +35,170 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4M-0y-wQO">
-                                <rect key="frame" x="15" y="436" width="134" height="44"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UAM-ld-Mlq">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fo0-0W-drX">
+                                        <rect key="frame" x="15" y="115" width="291" height="249"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <gestureRecognizers/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="UU0-fa-sHe" appends="YES" id="fyV-2S-cga"/>
+                                        </connections>
+                                    </textView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="接收人ID" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jok-M7-wZi">
+                                        <rect key="frame" x="15" y="372" width="291" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Uoz-G5-SZt"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="vXZ-lx-hvc" id="Ypm-3d-acZ"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="发送人ID" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eWz-at-66h">
+                                        <rect key="frame" x="14" y="410" width="140" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                        <connections>
+                                            <action selector="jidTextField:" destination="vXZ-lx-hvc" eventType="editingDidEnd" id="jfz-je-KrG"/>
+                                            <outlet property="delegate" destination="vXZ-lx-hvc" id="44O-XK-pH1"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="发送人密码" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vDF-bu-KJZ">
+                                        <rect key="frame" x="166" y="410" width="140" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="TXD-Ye-Qmr"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                        <connections>
+                                            <action selector="passwordTextField:" destination="vXZ-lx-hvc" eventType="editingDidEnd" id="2NX-6z-kPa"/>
+                                            <outlet property="delegate" destination="vXZ-lx-hvc" id="VPR-qt-9OS"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4M-0y-wQO">
+                                        <rect key="frame" x="15" y="442" width="139" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="连接"/>
+                                        <connections>
+                                            <action selector="presenceAvailable:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Ufb-Zl-tTE"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TTH-Mb-r8R">
+                                        <rect key="frame" x="168" y="443" width="137" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="137" id="l4o-BW-vGa"/>
+                                            <constraint firstAttribute="height" constant="30" id="tRk-dv-lhc"/>
+                                            <constraint firstAttribute="height" constant="30" id="yfz-cz-jbI"/>
+                                            <constraint firstAttribute="width" constant="137" id="zMQ-Ul-fsh"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="断开"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="yfz-cz-jbI"/>
+                                                <exclude reference="zMQ-Ul-fsh"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="presenceUnavailable:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="jFV-sM-DCV"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入发送消息" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Wt-zx-Boa">
+                                        <rect key="frame" x="15" y="77" width="291" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="TSk-Gm-CyE"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="send"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="vXZ-lx-hvc" id="CMc-tc-eBJ"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="134" id="cdS-Zf-3Db"/>
-                                    <constraint firstAttribute="height" constant="44" id="hDE-GY-4J1"/>
+                                    <constraint firstItem="eWz-at-66h" firstAttribute="leading" secondItem="UAM-ld-Mlq" secondAttribute="leading" constant="14" id="1kT-e9-iZK"/>
+                                    <constraint firstItem="vDF-bu-KJZ" firstAttribute="centerY" secondItem="eWz-at-66h" secondAttribute="centerY" id="3lF-Je-s1Q"/>
+                                    <constraint firstItem="TTH-Mb-r8R" firstAttribute="trailing" secondItem="3Wt-zx-Boa" secondAttribute="trailing" constant="-1" id="5Qg-d8-Tvg"/>
+                                    <constraint firstItem="TTH-Mb-r8R" firstAttribute="leading" secondItem="W4M-0y-wQO" secondAttribute="trailing" constant="54" id="5wz-BD-CCo"/>
+                                    <constraint firstItem="fo0-0W-drX" firstAttribute="top" secondItem="3Wt-zx-Boa" secondAttribute="bottom" constant="8" id="6Fu-2H-7IG"/>
+                                    <constraint firstItem="W4M-0y-wQO" firstAttribute="leading" secondItem="jok-M7-wZi" secondAttribute="leading" id="7Ke-yd-iB5"/>
+                                    <constraint firstAttribute="trailing" secondItem="3Wt-zx-Boa" secondAttribute="trailing" constant="14" id="9i4-JH-cvl"/>
+                                    <constraint firstAttribute="trailing" secondItem="TTH-Mb-r8R" secondAttribute="trailing" constant="15" id="Csn-Qb-6ll"/>
+                                    <constraint firstItem="jok-M7-wZi" firstAttribute="height" secondItem="vDF-bu-KJZ" secondAttribute="height" id="EVL-4v-k5D"/>
+                                    <constraint firstItem="TTH-Mb-r8R" firstAttribute="top" secondItem="vDF-bu-KJZ" secondAttribute="bottom" constant="3" id="F0Z-sL-0Mt"/>
+                                    <constraint firstItem="3Wt-zx-Boa" firstAttribute="trailing" secondItem="vDF-bu-KJZ" secondAttribute="trailing" id="FBE-Fv-0tk"/>
+                                    <constraint firstAttribute="trailing" secondItem="TTH-Mb-r8R" secondAttribute="trailing" constant="15" id="Fk3-Rq-ZET"/>
+                                    <constraint firstItem="vDF-bu-KJZ" firstAttribute="top" secondItem="jok-M7-wZi" secondAttribute="bottom" constant="8" id="G54-Mi-zik"/>
+                                    <constraint firstItem="3Wt-zx-Boa" firstAttribute="top" secondItem="UAM-ld-Mlq" secondAttribute="top" constant="77" id="Kbw-Jr-f8m"/>
+                                    <constraint firstItem="TTH-Mb-r8R" firstAttribute="leading" secondItem="UAM-ld-Mlq" secondAttribute="leading" constant="168" id="MaG-hf-eHz"/>
+                                    <constraint firstItem="jok-M7-wZi" firstAttribute="top" secondItem="fo0-0W-drX" secondAttribute="bottom" constant="8" id="P9t-Ll-feZ"/>
+                                    <constraint firstItem="jok-M7-wZi" firstAttribute="leading" secondItem="eWz-at-66h" secondAttribute="leading" constant="1" id="PM7-K2-PNp"/>
+                                    <constraint firstItem="W4M-0y-wQO" firstAttribute="bottom" secondItem="UAM-ld-Mlq" secondAttribute="bottomMargin" id="PNM-Cd-bk2"/>
+                                    <constraint firstItem="eWz-at-66h" firstAttribute="trailing" secondItem="W4M-0y-wQO" secondAttribute="trailing" id="PnB-lf-JjO"/>
+                                    <constraint firstItem="fo0-0W-drX" firstAttribute="leading" secondItem="3Wt-zx-Boa" secondAttribute="leading" id="RbM-5e-2hR"/>
+                                    <constraint firstItem="TTH-Mb-r8R" firstAttribute="top" secondItem="vDF-bu-KJZ" secondAttribute="bottom" constant="3" id="UZG-7i-rwT"/>
+                                    <constraint firstItem="3Wt-zx-Boa" firstAttribute="leading" secondItem="eWz-at-66h" secondAttribute="leading" constant="1" id="Ujq-fV-G4h"/>
+                                    <constraint firstItem="vDF-bu-KJZ" firstAttribute="leading" secondItem="eWz-at-66h" secondAttribute="trailing" constant="12" id="WIN-GT-vdh"/>
+                                    <constraint firstItem="TTH-Mb-r8R" firstAttribute="centerY" secondItem="W4M-0y-wQO" secondAttribute="centerY" constant="1" id="ZwY-aj-B5D"/>
+                                    <constraint firstItem="jok-M7-wZi" firstAttribute="centerX" secondItem="UAM-ld-Mlq" secondAttribute="centerX" id="dRA-pH-mJH"/>
+                                    <constraint firstItem="TTH-Mb-r8R" firstAttribute="top" secondItem="UAM-ld-Mlq" secondAttribute="top" constant="443" id="fT4-DI-84z"/>
+                                    <constraint firstAttribute="bottom" secondItem="TTH-Mb-r8R" secondAttribute="bottom" constant="7" id="h59-o4-Thh"/>
+                                    <constraint firstItem="fo0-0W-drX" firstAttribute="trailing" secondItem="3Wt-zx-Boa" secondAttribute="trailing" id="iUL-oR-7WZ"/>
+                                    <constraint firstItem="jok-M7-wZi" firstAttribute="leading" secondItem="3Wt-zx-Boa" secondAttribute="leading" id="njg-uR-Cfa"/>
+                                    <constraint firstItem="TTH-Mb-r8R" firstAttribute="leading" secondItem="UAM-ld-Mlq" secondAttribute="leading" constant="168" id="o4e-sM-AgQ"/>
+                                    <constraint firstItem="TTH-Mb-r8R" firstAttribute="baseline" secondItem="W4M-0y-wQO" secondAttribute="baseline" constant="1" id="qed-4E-Oi8"/>
+                                    <constraint firstItem="vDF-bu-KJZ" firstAttribute="width" secondItem="eWz-at-66h" secondAttribute="width" id="sld-QI-TeK"/>
+                                    <constraint firstItem="TTH-Mb-r8R" firstAttribute="leading" secondItem="W4M-0y-wQO" secondAttribute="trailing" constant="14" id="t9C-nU-0xC"/>
+                                    <constraint firstAttribute="bottom" secondItem="TTH-Mb-r8R" secondAttribute="bottom" constant="7" id="vZx-x4-tpF"/>
+                                    <constraint firstItem="jok-M7-wZi" firstAttribute="trailing" secondItem="3Wt-zx-Boa" secondAttribute="trailing" id="zGY-tt-nbK"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="连接"/>
-                                <connections>
-                                    <action selector="presenceAvailable:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Ufb-Zl-tTE"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入发送消息" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Wt-zx-Boa">
-                                <rect key="frame" x="16" y="72" width="288" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Ad2-QW-mkY"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="send"/>
-                                <connections>
-                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="CMc-tc-eBJ"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="接收人ID" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jok-M7-wZi">
-                                <rect key="frame" x="15" y="360" width="288" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="ZEu-Zf-0gc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
-                                <connections>
-                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="Ypm-3d-acZ"/>
-                                </connections>
-                            </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fo0-0W-drX">
-                                <rect key="frame" x="16" y="110" width="288" height="242"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="288" id="HeN-Ye-0P1"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="UU0-fa-sHe" appends="YES" id="fyV-2S-cga"/>
-                                </connections>
-                            </textView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="发送人ID" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eWz-at-66h">
-                                <rect key="frame" x="16" y="398" width="133" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="CD3-hv-pK4"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                                <connections>
-                                    <action selector="jidTextField:" destination="vXZ-lx-hvc" eventType="editingDidEnd" id="jfz-je-KrG"/>
-                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="44O-XK-pH1"/>
-                                </connections>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TTH-Mb-r8R">
-                                <rect key="frame" x="169" y="436" width="137" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="137" id="jzF-BG-0jw"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="断开"/>
-                                <connections>
-                                    <action selector="presenceUnavailable:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="jFV-sM-DCV"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="发送人密码" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vDF-bu-KJZ">
-                                <rect key="frame" x="169" y="398" width="134" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                                <connections>
-                                    <action selector="passwordTextField:" destination="vXZ-lx-hvc" eventType="editingDidEnd" id="2NX-6z-kPa"/>
-                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="VPR-qt-9OS"/>
-                                </connections>
-                            </textField>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="EVL-4v-k5D"/>
+                                        <exclude reference="5wz-BD-CCo"/>
+                                        <exclude reference="Csn-Qb-6ll"/>
+                                        <exclude reference="F0Z-sL-0Mt"/>
+                                        <exclude reference="Fk3-Rq-ZET"/>
+                                        <exclude reference="MaG-hf-eHz"/>
+                                        <exclude reference="fT4-DI-84z"/>
+                                        <exclude reference="h59-o4-Thh"/>
+                                        <exclude reference="o4e-sM-AgQ"/>
+                                        <exclude reference="qed-4E-Oi8"/>
+                                        <exclude reference="vZx-x4-tpF"/>
+                                    </mask>
+                                </variation>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.72692716700000004" green="0.85064313879999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="vDF-bu-KJZ" secondAttribute="trailing" constant="1" id="5FH-m7-jrb"/>
-                            <constraint firstItem="eWz-at-66h" firstAttribute="centerY" secondItem="vDF-bu-KJZ" secondAttribute="centerY" id="7nA-vj-eP7"/>
-                            <constraint firstItem="jok-M7-wZi" firstAttribute="trailing" secondItem="fo0-0W-drX" secondAttribute="trailing" constant="-1" id="AtO-ka-FaT"/>
-                            <constraint firstItem="fo0-0W-drX" firstAttribute="trailing" secondItem="3Wt-zx-Boa" secondAttribute="trailing" id="Do7-mj-UC7"/>
-                            <constraint firstItem="W4M-0y-wQO" firstAttribute="centerY" secondItem="TTH-Mb-r8R" secondAttribute="centerY" id="Hys-Xe-91X"/>
-                            <constraint firstItem="W4M-0y-wQO" firstAttribute="top" secondItem="eWz-at-66h" secondAttribute="bottom" constant="8" id="MUx-Xq-Kt5"/>
-                            <constraint firstItem="W4M-0y-wQO" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-1" id="Ucd-xp-IVa"/>
-                            <constraint firstItem="eWz-at-66h" firstAttribute="top" secondItem="jok-M7-wZi" secondAttribute="bottom" constant="8" id="Wra-vu-bSt"/>
-                            <constraint firstItem="3Wt-zx-Boa" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="YLV-XS-aWb"/>
-                            <constraint firstItem="L8i-FK-0wo" firstAttribute="top" secondItem="W4M-0y-wQO" secondAttribute="bottom" id="YaR-mb-Jpn"/>
-                            <constraint firstItem="eWz-at-66h" firstAttribute="width" secondItem="vDF-bu-KJZ" secondAttribute="width" constant="-1" id="eig-Lq-vkQ"/>
-                            <constraint firstItem="vDF-bu-KJZ" firstAttribute="leading" secondItem="eWz-at-66h" secondAttribute="trailing" constant="20" id="hks-Kq-Mse"/>
-                            <constraint firstItem="TTH-Mb-r8R" firstAttribute="height" secondItem="W4M-0y-wQO" secondAttribute="height" id="hn4-Pt-tzo"/>
-                            <constraint firstItem="3Wt-zx-Boa" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="iN9-Se-1Wf"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="TTH-Mb-r8R" secondAttribute="trailing" constant="-2" id="kKw-lR-glG"/>
-                            <constraint firstItem="eWz-at-66h" firstAttribute="height" secondItem="vDF-bu-KJZ" secondAttribute="height" id="l2T-qo-n5m"/>
-                            <constraint firstItem="jok-M7-wZi" firstAttribute="leading" secondItem="fo0-0W-drX" secondAttribute="leading" constant="-1" id="ldD-i2-fbL"/>
-                            <constraint firstItem="3Wt-zx-Boa" firstAttribute="top" secondItem="QxV-he-c4R" secondAttribute="bottom" constant="8" id="lih-li-4XE"/>
-                            <constraint firstItem="fo0-0W-drX" firstAttribute="top" secondItem="3Wt-zx-Boa" secondAttribute="bottom" constant="8" id="nIT-Da-KVV"/>
-                            <constraint firstItem="fo0-0W-drX" firstAttribute="leading" secondItem="3Wt-zx-Boa" secondAttribute="leading" id="rRn-Zf-o6E"/>
-                            <constraint firstItem="jok-M7-wZi" firstAttribute="top" secondItem="fo0-0W-drX" secondAttribute="bottom" constant="8" id="vlD-RN-tWs"/>
-                            <constraint firstItem="jok-M7-wZi" firstAttribute="leading" secondItem="eWz-at-66h" secondAttribute="leading" constant="-1" id="xig-7f-EN7"/>
+                            <constraint firstItem="L8i-FK-0wo" firstAttribute="top" secondItem="TTH-Mb-r8R" secondAttribute="bottom" constant="7" id="59d-If-Ad0"/>
+                            <constraint firstItem="UAM-ld-Mlq" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Fm3-qw-4ce"/>
+                            <constraint firstItem="L8i-FK-0wo" firstAttribute="top" secondItem="TTH-Mb-r8R" secondAttribute="bottom" constant="7" id="LoT-nO-Zd1"/>
+                            <constraint firstItem="UAM-ld-Mlq" firstAttribute="bottom" secondItem="L8i-FK-0wo" secondAttribute="top" id="T2i-PU-qVh"/>
+                            <constraint firstItem="UAM-ld-Mlq" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="hNf-zt-gsJ"/>
+                            <constraint firstAttribute="trailing" secondItem="UAM-ld-Mlq" secondAttribute="trailing" id="hvG-MD-7ZY"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="LoT-nO-Zd1"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="消息" id="m4A-9i-Qb0">
-                        <barButtonItem key="leftBarButtonItem" title="注册" id="kL1-Mi-Fdc">
-                            <connections>
-                                <segue destination="xsH-Ux-06u" kind="presentation" identifier="presentRegisterView" id="aeO-70-Aid"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="我的好友" id="gXO-3s-3Vv">
-                            <connections>
-                                <segue destination="VXt-0k-8ie" kind="show" identifier="myFriends" id="8hs-6Y-D7G"/>
-                            </connections>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" title="消息" id="zZB-xe-4rv">
+                        <barButtonItem key="leftBarButtonItem" title="注册" id="oBf-xZ-z58"/>
+                        <barButtonItem key="rightBarButtonItem" title="我的好友" id="S5U-yT-GeU"/>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="availableButton" destination="W4M-0y-wQO" id="6EC-gQ-ZWt"/>
                         <outlet property="friendTextField" destination="jok-M7-wZi" id="BAQ-OA-qS9"/>
+                        <outlet property="scrollView" destination="UAM-ld-Mlq" id="mL9-D4-OI0"/>
                         <outlet property="senderIDTextField" destination="eWz-at-66h" id="TkY-uA-3hd"/>
                         <outlet property="senderPasswordTextField" destination="vDF-bu-KJZ" id="yBN-Ih-ACK"/>
                         <outlet property="textField" destination="3Wt-zx-Boa" id="NaY-jX-Kui"/>

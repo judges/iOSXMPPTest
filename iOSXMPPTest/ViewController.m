@@ -31,6 +31,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
     NSString *password;
     NSUInteger reconnectCount;
     dispatch_semaphore_t sema;
+    UITextField *activeField;
 }
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) IBOutlet UITextField *textField;
@@ -40,6 +41,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 @property (strong, nonatomic) IBOutlet UIButton *unavailableButton;
 @property (strong, nonatomic) IBOutlet UITextField *senderIDTextField;
 @property (strong, nonatomic) IBOutlet UITextField *senderPasswordTextField;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
 
@@ -48,6 +50,8 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [self registerForKeyboardNotifications];
+    
     password = kPassword;
 
     myStream = [self createXMPPStreamWithJID:kUserID];
@@ -76,6 +80,45 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
         [[NSUserDefaults standardUserDefaults] setObject:string forKey:kPasswordKey];
     }
     self.senderPasswordTextField.text = senderPassword;
+}
+
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    _scrollView.contentInset = contentInsets;
+    _scrollView.scrollIndicatorInsets = contentInsets;
+    
+    // If active text field is hidden by keyboard, scroll it so it's visible
+    // Your app might not need or want this behavior.
+    CGRect aRect = self.view.frame;
+    aRect.size.height -= kbSize.height;
+    if (!CGRectContainsPoint(aRect, activeField.frame.origin) ) {
+        [self.scrollView scrollRectToVisible:activeField.frame animated:YES];
+    }
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    _scrollView.contentInset = contentInsets;
+    _scrollView.scrollIndicatorInsets = contentInsets;
 }
 
 - (IBAction)jidTextField:(UITextField *)sender {
@@ -334,6 +377,8 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
+    activeField = nil;
+
     if (textField == self.friendTextField) {
         [[NSUserDefaults standardUserDefaults] setObject:self.friendTextField.text forKey:kFriendJIDKey];
     }else if (textField == self.senderIDTextField){
@@ -342,6 +387,13 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
         [[NSUserDefaults standardUserDefaults] setObject:self.senderPasswordTextField.text forKey:kPasswordKey];
     }
 }
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    activeField = textField;
+}
+
+
 
 #pragma mark - Event
 
