@@ -13,10 +13,10 @@
 #import <objc/runtime.h>
 
 #define kFriendID @"root"
-#define kDomain @"@mit-pc"
+#define kDomain @"tom-mac"
+#define kHostName @"214.214.1.42"
 
-#define kUserID [NSString stringWithFormat:@"%@%@",@"tom1",kDomain]
-#define kHostName @"214.214.1.45"
+#define kUserID @"Test_Beta"
 #define kPassword @"123456"
 
 static NSString *kFriendJIDKey = @"kFriendJIDKey";
@@ -65,7 +65,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
     //Configuring the connection
     stream.hostName = kHostName;
 
-    XMPPJID *myJID = [XMPPJID jidWithUser:@"tom1" domain:@"mit-pc" resource:[self generateNewUUIDResource]];
+    XMPPJID *myJID = [XMPPJID jidWithUser:kUserID domain:kDomain resource:@"iPhone"];
     
     stream.myJID = myJID;
 
@@ -99,13 +99,15 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 }
 //online上线
 - (IBAction)presenceAvailable:(id)sender {
-    XMPPPresence *presence = [XMPPPresence presenceWithType:@"available"];
-    [myStream sendElement:presence];
+    [self connect:myStream];
+//    XMPPPresence *presence = [XMPPPresence presenceWithType:@"available"];
+//    [myStream sendElement:presence];
 }
 //offline下线
 - (IBAction)presenceUnavailable:(id)sender {
     XMPPPresence *presence = [XMPPPresence presenceWithType:@"unavailable"];
     [myStream sendElement:presence];
+    [myStream disconnectAfterSending];
 }
 
 - (void)sendMessage:(NSString *) string toUser:(NSString *) user {
@@ -130,15 +132,35 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
     NSError *error = nil;
 //     Authenticating
 //    [myStream authenticateWithPassword:password error:&error];
+    //匿名验证
+//    if ([myStream supportsAnonymousAuthentication]) {
+//        [myStream authenticateAnonymously:&error];
+//    }
+
+
     
-    if ([myStream supportsAnonymousAuthentication]) {
-        //匿名验证
-        [myStream authenticateAnonymously:&error];
+    id<XMPPSASLAuthentication> auth = nil;
+    if ([sender supportsPlainAuthentication]) {
+        //base64编码
+        auth = [[XMPPPlainAuthentication alloc] initWithStream:sender password:password];
+    }else if ([sender supportsDigestMD5Authentication]){
+        //MD5
+        auth = [[XMPPDigestMD5Authentication alloc] initWithStream:sender password:password];
     }
+    [sender authenticate:auth error:&error];
     if (error != nil) {
         NSLog(@"authenticateWithPassword : error:%@ %@",error,error.userInfo);
     }
+    //    <iq id="S99ge-0" type="get"><query xmlns="jabber:iq:auth"><username>hl</username></query></iq>
+    //不加密
+//    DDXMLElement *query = [DDXMLElement elementWithName:@"query" xmlns:@"jabber:iq:auth"];
+//    DDXMLElement *userName = [DDXMLElement elementWithName:@"username" stringValue:kUserID];
+//    [query addChild:userName];
+//    XMPPIQ *iq = [XMPPIQ iqWithType:@"get" elementID:@"abcd12345678" child:query];
+//    [sender sendElement:iq];
 }
+
+
 
 - (void)xmppStream:(XMPPStream *)sender willSecureWithSettings:(NSMutableDictionary *)settings{
     
@@ -174,6 +196,25 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 
 
 - (BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq{
+//    RECV: <iq xmlns="jabber:client" type="result" id="abcd12345678"><query xmlns="jabber:iq:auth"><username>Test_Beta</username><password/><digest/><resource/></query></iq>
+//    if ([[iq attributeForName:@"id"].stringValue isEqualToString:@"abcd12345678"]) {
+//        
+//        NSXMLElement *query = [NSXMLElement elementWithName:@"query" xmlns:@"jabber:iq:auth"];
+//        NSXMLElement *userName = [NSXMLElement elementWithName:@"username" stringValue:kUserID];
+//        NSXMLElement *passWord = [NSXMLElement elementWithName:@"password" stringValue:password];
+//        NSXMLElement *resource = [NSXMLElement elementWithName:@"resource" stringValue:@"iPhone"];
+//
+//        [query addChild:userName];
+//        [query addChild:passWord];
+//        [query addChild:resource];
+//
+//        XMPPIQ *retIq = [XMPPIQ iqWithType:@"set" elementID:@"987654321abcdefg" child:query];
+//        [sender sendElement:retIq];
+//    }
+    
+  
+    
+    
     return YES;
 }
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message{
@@ -250,7 +291,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
     if (textField == self.friendTextField) {
         [textField resignFirstResponder];
     }else{
-        NSString *messageString = [NSString stringWithFormat:@"%@%@",self.friendTextField.text,kDomain];
+        NSString *messageString = [NSString stringWithFormat:@"%@@%@",self.friendTextField.text,kDomain];
         [self sendMessage:textField.text toUser:messageString];
         textField.text = nil;
     }
