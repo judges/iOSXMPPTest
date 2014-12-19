@@ -50,15 +50,10 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    _scrollView.alwaysBounceVertical = YES;
     [self registerForKeyboardNotifications];
     
-    password = kPassword;
 
-    myStream = [self createXMPPStreamWithJID:kUserID];
-    
-    [self setReconnect:myStream];
-    
-    [self connect:myStream];
 
     NSString *string = [[NSUserDefaults standardUserDefaults] stringForKey:kFriendJIDKey];
     if (string == nil) {
@@ -80,18 +75,27 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
         [[NSUserDefaults standardUserDefaults] setObject:string forKey:kPasswordKey];
     }
     self.senderPasswordTextField.text = senderPassword;
+    
+    password = senderPassword;
+    
+    myStream = [self createXMPPStreamWithJID:senderID];
+    
+    [self setReconnect:myStream];
+    
+    [self connect:myStream];
 }
 
 - (void)registerForKeyboardNotifications
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWasShown:)
-                                                 name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillBeHidden:)
-                                                 name:UIKeyboardWillHideNotification object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)unregisterForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
+     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 // Called when the UIKeyboardDidShowNotification is sent.
@@ -99,8 +103,8 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 {
     NSDictionary* info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    //if use
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(64.0, 0.0, kbSize.height, 0.0);
     _scrollView.contentInset = contentInsets;
     _scrollView.scrollIndicatorInsets = contentInsets;
     
@@ -116,7 +120,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 // Called when the UIKeyboardWillHideNotification is sent
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification
 {
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(64.0, 0.0, 0.0, 0.0);;
     _scrollView.contentInset = contentInsets;
     _scrollView.scrollIndicatorInsets = contentInsets;
 }
