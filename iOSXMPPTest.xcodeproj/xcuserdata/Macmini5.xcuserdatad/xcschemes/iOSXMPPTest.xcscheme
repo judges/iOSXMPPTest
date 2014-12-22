@@ -71,7 +71,9 @@
       buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
-      allowLocationSimulation = "YES">
+      allowLocationSimulation = "YES"
+      region = "CN"
+      viewDebuggingEnabled = "No">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"

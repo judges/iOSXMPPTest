@@ -12,6 +12,9 @@
 #import "RegistrationViewController.h"
 #import <objc/runtime.h>
 #import "AutoColoseInfoDialog.h"
+#import "ManagingKeyboard.h"
+
+
 #define kFriendID @"root"
 #define kDomain @"mit-pc"
 #define kHostName @"214.214.1.100"
@@ -24,14 +27,13 @@ static NSString *kUserIDKey = @"kUserIDKey";
 static NSString *kPasswordKey = @"kPasswordKey";
 
 //XMPP Logging
-static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
+//static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 
 @interface ViewController ()<XMPPStreamDelegate,UIAlertViewDelegate,XMPPReconnectDelegate,UITextFieldDelegate>{
     XMPPStream *myStream;
     NSString *password;
     NSUInteger reconnectCount;
     dispatch_semaphore_t sema;
-    UITextField *activeField;
 }
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) IBOutlet UITextField *textField;
@@ -39,7 +41,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 @property (strong, nonatomic) IBOutlet UITextField *friendTextField;
 @property (strong, nonatomic) IBOutlet UIButton *availableButton;
 @property (strong, nonatomic) IBOutlet UIButton *unavailableButton;
-@property (strong, nonatomic) IBOutlet UITextField *senderIDTextField;
+
 @property (strong, nonatomic) IBOutlet UITextField *senderPasswordTextField;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
@@ -51,9 +53,6 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
     [super viewDidLoad];
 
     _scrollView.alwaysBounceVertical = YES;
-    [self registerForKeyboardNotifications];
-    
-
 
     NSString *string = [[NSUserDefaults standardUserDefaults] stringForKey:kFriendJIDKey];
     if (string == nil) {
@@ -79,63 +78,21 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
     password = senderPassword;
     
     myStream = [self createXMPPStreamWithJID:senderID];
-    
+
     [self setReconnect:myStream];
     
     [self connect:myStream];
     
-    [self extendedLayoutForView];
 }
 
-- (void)extendedLayoutForView{
-    //使用iOS7自动延展布局
-    if ([UIViewController instancesRespondToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
-        self.automaticallyAdjustsScrollViewInsets = YES;
-        self.edgesForExtendedLayout = (UIRectEdgeTop | UIRectEdgeBottom);
-    }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [[ManagingKeyboard sharedManagingKeyboard] registerForKeyboardNotificationsWithScrollView:_scrollView contentsController:self];
 }
 
-#pragma mark - RegisterNotification
-- (void)registerForKeyboardNotifications
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
-}
-
-- (void)unregisterForKeyboardNotifications
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
-     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-}
-
-// Called when the UIKeyboardDidShowNotification is sent.
-- (void)keyboardWasShown:(NSNotification*)aNotification
-{
-    NSDictionary* info = [aNotification userInfo];
-    //UIKeyboardFrameBeginUserInfoKey height constraint to 184.0
-    //UIKeyboardFrameEndUserInfoKey height from 184.0 to 251.5
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
-    //iOS7高度延展了64
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(64.0, 0.0, kbSize.height, 0.0);
-    _scrollView.contentInset = contentInsets;
-    _scrollView.scrollIndicatorInsets = contentInsets;
-    
-    // If active text field is hidden by keyboard, scroll it so it's visible
-    // Your app might not need or want this behavior.
-    CGRect aRect = self.view.frame;
-    aRect.size.height -= kbSize.height;
-    if (!CGRectContainsPoint(aRect, activeField.frame.origin) ) {
-        [self.scrollView scrollRectToVisible:activeField.frame animated:YES];
-    }
-}
-
-// Called when the UIKeyboardWillHideNotification is sent
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification
-{
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(64.0, 0.0, 0.0, 0.0);;
-    _scrollView.contentInset = contentInsets;
-    _scrollView.scrollIndicatorInsets = contentInsets;
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[ManagingKeyboard sharedManagingKeyboard] unregisterForKeyboardNotifications];
 }
 
 - (IBAction)jidTextField:(UITextField *)sender {
@@ -170,7 +127,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 - (void)connect:(XMPPStream *)stream{
     //Connecting
     NSError *error = nil;
-    if (![stream connectWithTimeout:5 error:&error]) {
+    if (![stream connectWithTimeout:20 error:&error]) {
         NSLog(@"Oops, I probably forgot something: %@", error);
     }
 }
@@ -394,8 +351,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
-    activeField = nil;
-
+    [ManagingKeyboard sharedManagingKeyboard].activeField = nil;
     
     if (textField == self.friendTextField) {
         [[NSUserDefaults standardUserDefaults] setObject:textField.text forKey:kFriendJIDKey];
@@ -411,7 +367,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    activeField = textField;
+    [ManagingKeyboard sharedManagingKeyboard].activeField = textField;
 }
 
 
