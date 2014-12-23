@@ -425,7 +425,7 @@
                   symbolName = "-[XMPPStream disconnect]"
                   moduleName = "iOSXMPPTest"
                   urlString = "file:///Users/Macmini5/Documents/iOSXMPPTest/iOSXMPPTest/XMPP/Core/XMPPStream.m"
-                  timestampString = "441016315.605099"
+                  timestampString = "441019144.14191"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1387"
@@ -439,7 +439,7 @@
                   symbolName = "__24-[XMPPStream disconnect]_block_invoke"
                   moduleName = "iOSXMPPTest"
                   urlString = "file:///Users/Macmini5/Documents/iOSXMPPTest/iOSXMPPTest/XMPP/Core/XMPPStream.m"
-                  timestampString = "441016315.605241"
+                  timestampString = "441019144.142088"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1387"
@@ -632,11 +632,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSXMPPTest/FriendsViewController.m"
-            timestampString = "441016233.814568"
+            timestampString = "441019144.099332"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "-xmppStream:didReceiveIQ:"
             landmarkType = "5">
          </BreakpointContent>
@@ -670,6 +670,22 @@
             startingLineNumber = "22"
             endingLineNumber = "22"
             landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOSXMPPTest/FriendsViewController.m"
+            timestampString = "441019691.023938"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "-addResultSet"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

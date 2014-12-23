@@ -23,8 +23,9 @@
     self.title = @"Friends";
     
     self.textView.text = @"asdfa";
-    [self queryRoster];
+//    [self queryRoster];
 
+    [self addResultSet];
 }
 
 #pragma mark - 获取好友列表
@@ -39,8 +40,36 @@
     [iq addAttributeWithName:@"id" stringValue:[NSUUID UUID].UUIDString];
     [iq addAttributeWithName:@"type" stringValue:@"get"];
     
+    
 //    XMPPIQ *iq = [XMPPIQ iqWithType:@"get" elementID:[NSUUID UUID].UUIDString child:query];
-        [iq addChild:query];
+    [iq addChild:query];
+    
+    [_myStream sendElement:iq];
+    
+    
+    
+    
+}
+
+- (void)addResultSet{
+//    <iq type='set' from='stpeter@jabber.org/roundabout' to='users.jabber.org' id='limit1'>
+//    <query xmlns='jabber:iq:search'>
+//    <nick>Pete</nick>
+//    <set xmlns='http://jabber.org/protocol/rsm'>
+//    <max>10</max>
+//    </set>
+//    </query>
+//    </iq>
+    
+    XMPPIQ *iq = [XMPPIQ iqWithType:@"set" to:[XMPPJID jidWithUser:nil domain:_myStream.myJID.domain resource:nil] elementID:@"limit1"];
+    DDXMLElement *query = [DDXMLElement elementWithName:@"query" xmlns:@"jabber:iq:search"];
+    [iq addChild:query];
+
+    DDXMLElement *nickName = [DDXMLElement elementWithName:@"nick" stringValue:@"test"];
+    [query addChild:nickName];
+    XMPPResultSet *resultSet = [XMPPResultSet resultSetWithMax:2];
+    [query addChild:resultSet];
+    
     [_myStream sendElement:iq];
 }
 

@@ -14,3 +14,4 @@
 #import "XMPPReconnect.h"
 #import "XMPPRoom.h"
 #import "XMPPPubSub.h"
+#import "XMPPResultSet.h"
