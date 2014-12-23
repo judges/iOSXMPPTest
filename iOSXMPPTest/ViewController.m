@@ -51,7 +51,7 @@ static NSString *kPasswordKey = @"kPasswordKey";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    [Singleton sharedSingleton].textView = _textView;
     _scrollView.alwaysBounceVertical = YES;
 
     NSString *string = [[NSUserDefaults standardUserDefaults] stringForKey:kFriendJIDKey];
@@ -107,7 +107,7 @@ static NSString *kPasswordKey = @"kPasswordKey";
     //Configuring the connection
     stream.hostName = kHostName;
 
-    XMPPJID *myJID = [XMPPJID jidWithUser:kUserID domain:kDomain resource:@"iPhone"];
+    XMPPJID *myJID = [XMPPJID jidWithUser:jid domain:kDomain resource:@"AX"];
     
     stream.myJID = myJID;
 
@@ -134,6 +134,9 @@ static NSString *kPasswordKey = @"kPasswordKey";
 
 - (IBAction)sendButtonClick:(UIButton *)sender {
     [self sendMessage:self.textField.text toUser:kFriendID];
+}
+- (IBAction)clearButton:(id)sender {
+    self.textView.text = nil;
 }
 
 - (IBAction)hiddenKeybord:(UITapGestureRecognizer *)sender {
@@ -355,7 +358,6 @@ static NSString *kPasswordKey = @"kPasswordKey";
     
     if (textField == self.friendTextField) {
         [[NSUserDefaults standardUserDefaults] setObject:textField.text forKey:kFriendJIDKey];
-        myStream.myJID = [XMPPJID jidWithUser:textField.text domain:kDomain resource:@"iPhone"];
     }else if (textField == self.senderIDTextField){
         [[NSUserDefaults standardUserDefaults] setObject:textField.text forKey:kUserIDKey];
         myStream.myJID = [XMPPJID jidWithUser:textField.text domain:kDomain resource:@"iPhone"];
@@ -389,8 +391,8 @@ static NSString *kPasswordKey = @"kPasswordKey";
     if ([segue.identifier isEqual:@"myFriends"]) {
         FriendsViewController *vc = (FriendsViewController *)segue.destinationViewController;
         vc.myStream = myStream;
+        [vc.myStream addDelegate:vc delegateQueue:dispatch_get_main_queue()];
 
-        [myStream addDelegate:vc delegateQueue:dispatch_get_main_queue()];
     }else if ([segue.identifier isEqual:@"presentRegisterView"]){
         RegistrationViewController *vc = (RegistrationViewController *)segue.destinationViewController;
         vc.stream = myStream;

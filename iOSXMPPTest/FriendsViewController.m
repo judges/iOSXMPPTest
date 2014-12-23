@@ -15,12 +15,16 @@
 
 @implementation FriendsViewController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"Friends";
+    
+    self.textView.text = @"asdfa";
     [self queryRoster];
-    
-    
+
 }
 
 #pragma mark - 获取好友列表
@@ -51,18 +55,19 @@
 //    　　<query />
 //    <iq />
     
-
-    self.textView.text = iq.XMLString;
-    if ([@"result" isEqualToString:iq.type]) {
-        NSXMLElement *query = iq.childElement;
-        if ([@"query" isEqualToString:query.name]) {
-            NSArray *items = [query children];
-            for (NSXMLElement *item in items) {
-                NSString *jid = [item attributeStringValueForName:@"jid"];
-                XMPPJID *xmppJID = [XMPPJID jidWithString:jid];
-//                [self.roster addObject:xmppJID];
-            }
+    
+    if ([iq isResultIQ]) {
+        if ([[[iq childElement] xmlns] isEqualToString:@"jabber:iq:roster"]) {
+            self.textView.text = iq.XMLString;
         }
+//        if ([@"query" isEqualToString:query.name]) {
+//            NSArray *items = [query children];
+//            for (NSXMLElement *item in items) {
+//                NSString *jid = [item attributeStringValueForName:@"jid"];
+//                XMPPJID *xmppJID = [XMPPJID jidWithString:jid];
+////                [self.roster addObject:xmppJID];
+//            }
+//        }
     }
     return YES;
 }

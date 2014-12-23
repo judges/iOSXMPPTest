@@ -39,7 +39,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="接收人ID" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="jok-M7-wZi">
-                                        <rect key="frame" x="15" y="371" width="291" height="30"/>
+                                        <rect key="frame" x="15" y="377" width="291" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                                         <connections>
@@ -47,7 +47,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="发送人ID" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="eWz-at-66h">
-                                        <rect key="frame" x="14" y="409" width="140" height="30"/>
+                                        <rect key="frame" x="14" y="415" width="140" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                         <connections>
@@ -55,7 +55,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="发送人密码" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vDF-bu-KJZ">
-                                        <rect key="frame" x="166" y="409" width="140" height="30"/>
+                                        <rect key="frame" x="166" y="415" width="140" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                         <connections>
@@ -63,7 +63,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4M-0y-wQO">
-                                        <rect key="frame" x="15" y="441" width="139" height="30"/>
+                                        <rect key="frame" x="15" y="447" width="139" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="139" id="aXW-4b-Rbe"/>
                                             <constraint firstAttribute="height" constant="30" id="ubt-LV-FY3"/>
@@ -75,7 +75,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TTH-Mb-r8R">
-                                        <rect key="frame" x="168" y="442" width="137" height="30"/>
+                                        <rect key="frame" x="168" y="448" width="137" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="K2j-1H-K2B"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="137" placeholder="YES" id="c7A-jh-rh3"/>
@@ -93,11 +93,11 @@
                                         </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fo0-0W-drX">
-                                        <rect key="frame" x="15" y="58" width="290" height="305"/>
+                                        <rect key="frame" x="15" y="58" width="290" height="280"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="305" id="Bam-AH-Dp2"/>
+                                            <constraint firstAttribute="height" constant="280" id="Bam-AH-Dp2"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -125,12 +125,25 @@
                                             <outlet property="delegate" destination="vXZ-lx-hvc" id="CMc-tc-eBJ"/>
                                         </connections>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybM-LB-R9v">
+                                        <rect key="frame" x="204" y="343" width="65" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="65" id="lxH-aP-hoY"/>
+                                        </constraints>
+                                        <state key="normal" title="清空">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="clearButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="XbP-Gb-Ejz"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="jok-M7-wZi" firstAttribute="top" secondItem="fo0-0W-drX" secondAttribute="bottom" constant="8" symbolic="YES" id="2Jd-Sy-pic"/>
+                                    <constraint firstItem="jok-M7-wZi" firstAttribute="top" secondItem="fo0-0W-drX" secondAttribute="bottom" constant="39" id="2Jd-Sy-pic"/>
                                     <constraint firstItem="fo0-0W-drX" firstAttribute="trailing" secondItem="TTH-Mb-r8R" secondAttribute="trailing" id="2Wk-QZ-3Yz"/>
                                     <constraint firstItem="jok-M7-wZi" firstAttribute="trailing" secondItem="fo0-0W-drX" secondAttribute="trailing" constant="1" id="5lb-SZ-tUO"/>
                                     <constraint firstItem="jok-M7-wZi" firstAttribute="trailing" secondItem="vDF-bu-KJZ" secondAttribute="trailing" id="IGG-aG-6b4"/>
+                                    <constraint firstItem="jok-M7-wZi" firstAttribute="top" secondItem="ybM-LB-R9v" secondAttribute="bottom" constant="4" id="IWu-Jl-AmO"/>
                                     <constraint firstItem="vDF-bu-KJZ" firstAttribute="centerX" secondItem="TTH-Mb-r8R" secondAttribute="centerX" id="Kmb-rj-YVc"/>
                                     <constraint firstItem="vDF-bu-KJZ" firstAttribute="width" secondItem="eWz-at-66h" secondAttribute="width" id="MvV-WB-kdi"/>
                                     <constraint firstItem="3Wt-zx-Boa" firstAttribute="leading" secondItem="fo0-0W-drX" secondAttribute="leading" id="NuG-hG-b56"/>
@@ -147,10 +160,12 @@
                                     <constraint firstItem="3Wt-zx-Boa" firstAttribute="centerX" secondItem="UAM-ld-Mlq" secondAttribute="centerX" id="iio-v5-Qbj"/>
                                     <constraint firstItem="vDF-bu-KJZ" firstAttribute="leading" secondItem="eWz-at-66h" secondAttribute="trailing" constant="12" id="nLc-Pa-cIF"/>
                                     <constraint firstAttribute="trailing" secondItem="3Wt-zx-Boa" secondAttribute="trailing" constant="15" id="oQO-nc-QSu"/>
+                                    <constraint firstItem="ybM-LB-R9v" firstAttribute="top" secondItem="fo0-0W-drX" secondAttribute="bottom" constant="5" id="paH-qh-kh4"/>
                                     <constraint firstItem="fo0-0W-drX" firstAttribute="leading" secondItem="jok-M7-wZi" secondAttribute="leading" id="sR8-0O-aVC"/>
                                     <constraint firstItem="fo0-0W-drX" firstAttribute="top" secondItem="3Wt-zx-Boa" secondAttribute="bottom" constant="8" symbolic="YES" id="tW1-U6-vpV"/>
                                     <constraint firstItem="eWz-at-66h" firstAttribute="top" secondItem="jok-M7-wZi" secondAttribute="bottom" constant="8" symbolic="YES" id="vEB-Y4-wPD"/>
-                                    <constraint firstItem="W4M-0y-wQO" firstAttribute="bottom" secondItem="UAM-ld-Mlq" secondAttribute="bottomMargin" constant="-1" id="xQp-hw-Fx7"/>
+                                    <constraint firstItem="ybM-LB-R9v" firstAttribute="trailing" secondItem="3Wt-zx-Boa" secondAttribute="trailing" constant="-36" id="vZw-bK-gJG"/>
+                                    <constraint firstItem="W4M-0y-wQO" firstAttribute="bottom" secondItem="UAM-ld-Mlq" secondAttribute="bottomMargin" constant="5" id="xQp-hw-Fx7"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -176,7 +191,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="我的好友" id="S5U-yT-GeU">
                             <connections>
-                                <segue destination="VXt-0k-8ie" kind="show" id="seC-ZX-Wph"/>
+                                <segue destination="VXt-0k-8ie" kind="show" identifier="myFriends" id="seC-ZX-Wph"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -289,10 +304,11 @@
                         <viewControllerLayoutGuide type="bottom" id="aUM-v5-I2n"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="e3i-R3-9Of">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I1n-oh-35D">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AE7-yw-plZ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -300,17 +316,22 @@
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="AE7-yw-plZ" firstAttribute="bottom" secondItem="aUM-v5-I2n" secondAttribute="top" id="G1G-ft-Jzx"/>
+                            <constraint firstItem="AE7-yw-plZ" firstAttribute="top" secondItem="e3i-R3-9Of" secondAttribute="top" id="frG-uy-Xaw"/>
+                            <constraint firstItem="AE7-yw-plZ" firstAttribute="leading" secondItem="e3i-R3-9Of" secondAttribute="leading" id="lhV-Vp-mB7"/>
+                            <constraint firstAttribute="trailing" secondItem="AE7-yw-plZ" secondAttribute="trailing" id="yXb-50-rN9"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Pkl-SO-byo"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="textView" destination="I1n-oh-35D" id="YwD-Nh-W31"/>
+                        <outlet property="textView" destination="AE7-yw-plZ" id="wG4-fg-aWx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hNN-Mc-N1N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-313" y="338"/>
+            <point key="canvasLocation" x="-321" y="338"/>
         </scene>
     </scenes>
 </document>

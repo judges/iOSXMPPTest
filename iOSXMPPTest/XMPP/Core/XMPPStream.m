@@ -1438,7 +1438,8 @@ enum XMPPStreamConfig
 				NSString *termStr = @"</stream:stream>";
 				NSData *termData = [termStr dataUsingEncoding:NSUTF8StringEncoding];
 				
-				XMPPLogSend(@"SEND: %@", termStr);
+//				XMPPLogSend(@"SEND: %@", termStr);
+                [self send:termStr];
 				numberOfBytesSent += [termData length];
 				
 				[asyncSocket writeData:termData withTimeout:TIMEOUT_XMPP_WRITE tag:TAG_XMPP_WRITE_STOP];
@@ -1531,7 +1532,8 @@ enum XMPPStreamConfig
 	
 	NSData *outgoingData = [starttls dataUsingEncoding:NSUTF8StringEncoding];
 	
-	XMPPLogSend(@"SEND: %@", starttls);
+//	XMPPLogSend(@"SEND: %@", starttls);
+    [self send:starttls];
 	numberOfBytesSent += [outgoingData length];
 	
 	[asyncSocket writeData:outgoingData
@@ -1687,7 +1689,7 @@ enum XMPPStreamConfig
 		NSString *outgoingStr = [iq compactXMLString];
 		NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 		
-		XMPPLogSend(@"SEND: %@", outgoingStr);
+		[self send:outgoingStr];
 		numberOfBytesSent += [outgoingData length];
 		
 		[asyncSocket writeData:outgoingData
@@ -1710,6 +1712,8 @@ enum XMPPStreamConfig
 	return result;
     
 }
+
+
 
 /**
  * This method attempts to register a new user on the server using the given username and password.
@@ -2417,7 +2421,7 @@ enum XMPPStreamConfig
 	NSString *outgoingStr = [iq compactXMLString];
 	NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 	
-	XMPPLogSend(@"SEND: %@", outgoingStr);
+	[self send:outgoingStr];
 	numberOfBytesSent += [outgoingData length];
 	
 	[asyncSocket writeData:outgoingData
@@ -2435,7 +2439,7 @@ enum XMPPStreamConfig
 	NSString *outgoingStr = [message compactXMLString];
 	NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 	
-	XMPPLogSend(@"SEND: %@", outgoingStr);
+	[self send:outgoingStr];
 	numberOfBytesSent += [outgoingData length];
 	
 	[asyncSocket writeData:outgoingData
@@ -2453,7 +2457,7 @@ enum XMPPStreamConfig
 	NSString *outgoingStr = [presence compactXMLString];
 	NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 	
-	XMPPLogSend(@"SEND: %@", outgoingStr);
+	[self send:outgoingStr];
 	numberOfBytesSent += [outgoingData length];
 	
 	[asyncSocket writeData:outgoingData
@@ -2486,7 +2490,7 @@ enum XMPPStreamConfig
 	NSString *outgoingStr = [element compactXMLString];
 	NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 	
-	XMPPLogSend(@"SEND: %@", outgoingStr);
+	[self send:outgoingStr];
 	numberOfBytesSent += [outgoingData length];
 	
 	[asyncSocket writeData:outgoingData
@@ -2716,7 +2720,7 @@ enum XMPPStreamConfig
 			NSString *outgoingStr = [element compactXMLString];
 			NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 			
-			XMPPLogSend(@"SEND: %@", outgoingStr);
+			[self send:outgoingStr];
 			numberOfBytesSent += [outgoingData length];
 			
 			[asyncSocket writeData:outgoingData
@@ -2751,7 +2755,7 @@ enum XMPPStreamConfig
 			NSString *outgoingStr = [element compactXMLString];
 			NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 			
-			XMPPLogSend(@"SEND: %@", outgoingStr);
+			[self send:outgoingStr];
 			numberOfBytesSent += [outgoingData length];
 			
 			[asyncSocket writeData:outgoingData
@@ -3239,7 +3243,8 @@ enum XMPPStreamConfig
 		
 		NSData *outgoingData = [s1 dataUsingEncoding:NSUTF8StringEncoding];
 		
-		XMPPLogSend(@"SEND: %@", s1);
+//		XMPPLogSend(@"SEND: %@", s1);
+        [self send:s1];
 		numberOfBytesSent += [outgoingData length];
 		
 		[asyncSocket writeData:outgoingData
@@ -3312,7 +3317,8 @@ enum XMPPStreamConfig
 	
 	NSData *outgoingData = [s2 dataUsingEncoding:NSUTF8StringEncoding];
 	
-	XMPPLogSend(@"SEND: %@", s2);
+//	XMPPLogSend(@"SEND: %@", s2);
+    [self send:s2];
 	numberOfBytesSent += [outgoingData length];
 	
 	[asyncSocket writeData:outgoingData
@@ -3792,7 +3798,7 @@ enum XMPPStreamConfig
 		NSString *outgoingStr = [iq compactXMLString];
 		NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 		
-		XMPPLogSend(@"SEND: %@", outgoingStr);
+		[self send:outgoingStr];
 		numberOfBytesSent += [outgoingData length];
 		
 		[asyncSocket writeData:outgoingData
@@ -3816,7 +3822,7 @@ enum XMPPStreamConfig
 		NSString *outgoingStr = [iq compactXMLString];
 		NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 		
-		XMPPLogSend(@"SEND: %@", outgoingStr);
+		[self send:outgoingStr];
 		numberOfBytesSent += [outgoingData length];
 		
 		[asyncSocket writeData:outgoingData
@@ -3945,7 +3951,7 @@ enum XMPPStreamConfig
 		NSString *outgoingStr = [iq compactXMLString];
 		NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 		
-		XMPPLogSend(@"SEND: %@", outgoingStr);
+		[self send:outgoingStr];
 		numberOfBytesSent += [outgoingData length];
 		
 		[asyncSocket writeData:outgoingData
@@ -3971,7 +3977,7 @@ enum XMPPStreamConfig
 		NSString *outgoingStr = [iq compactXMLString];
 		NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 		
-		XMPPLogSend(@"SEND: %@", outgoingStr);
+		[self send:outgoingStr];
 		numberOfBytesSent += [outgoingData length];
 		
 		[asyncSocket writeData:outgoingData
@@ -4009,7 +4015,7 @@ enum XMPPStreamConfig
 		NSString *outgoingStr = [iq compactXMLString];
 		NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 		
-		XMPPLogSend(@"SEND: %@", outgoingStr);
+		[self send:outgoingStr];
 		numberOfBytesSent += [outgoingData length];
 		
 		[asyncSocket writeData:outgoingData
@@ -4392,7 +4398,10 @@ enum XMPPStreamConfig
 	
 	XMPPLogTrace();
 	XMPPLogRecvPost(@"RECV: %@", [root compactXMLString]);
-		
+    NSString *str = [NSString stringWithFormat:@"\n***************分割线******************\n***************分割线******************\nRECV: %@", [root compactXMLString]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [Singleton sharedSingleton].textView.text = [[Singleton sharedSingleton].textView.text stringByAppendingString:str];
+    });
 	// At this point we've sent our XML stream header, and we've received the response XML stream header.
 	// We save the root element of our stream for future reference.
 	
@@ -4426,7 +4435,7 @@ enum XMPPStreamConfig
 			NSString *outgoingStr = [streamFeatures compactXMLString];
 			NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 			
-			XMPPLogSend(@"SEND: %@", outgoingStr);
+			[self send:outgoingStr];
 			numberOfBytesSent += [outgoingData length];
 			
 			[asyncSocket writeData:outgoingData
@@ -4469,7 +4478,7 @@ enum XMPPStreamConfig
 			NSString *outgoingStr = [iq compactXMLString];
 			NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 			
-			XMPPLogSend(@"SEND: %@", outgoingStr);
+			[self send:outgoingStr];
 			numberOfBytesSent += [outgoingData length];
 			
 			[asyncSocket writeData:outgoingData
@@ -4490,6 +4499,11 @@ enum XMPPStreamConfig
 	XMPPLogTrace();
 	XMPPLogRecvPost(@"RECV: %@", [element compactXMLString]);
 		
+    NSString *str = [NSString stringWithFormat:@"\n***************分割线******************\n***************分割线******************\nRECV: %@", [element compactXMLString]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [Singleton sharedSingleton].textView.text = [[Singleton sharedSingleton].textView.text stringByAppendingString:str];
+    });
+    
 	NSString *elementName = [element name];
 	
 	if ([elementName isEqualToString:@"stream:error"] || [elementName isEqualToString:@"error"])
@@ -5017,6 +5031,18 @@ enum XMPPStreamConfig
 {
 	return [[self class] generateUUID];
 }
+
+#pragma mark - DisplaySend&Recv
+
+- (void)send:(NSString *)outStr{
+    XMPPLogSend(@"SEND: %@", outStr);
+    NSString *str = [NSString stringWithFormat:@"\n***************分割线******************\n***************分割线******************\nSEND: %@", outStr];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [Singleton sharedSingleton].textView.text = [[Singleton sharedSingleton].textView.text stringByAppendingString:str];
+    });
+    
+}
+
 
 @end
 

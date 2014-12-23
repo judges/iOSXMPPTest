@@ -65,6 +65,7 @@
 		4AC2A4241A38347000A57553 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC2A4231A38347000A57553 /* libresolv.dylib */; };
 		4AD92CAF1A3EB00600719794 /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD92CAE1A3EB00600719794 /* RegistrationViewController.m */; };
 		4ADBC9901A47AD1A0028CB43 /* ManagingKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADBC98F1A47AD1A0028CB43 /* ManagingKeyboard.m */; };
+		4ADBC9931A47FB9E0028CB43 /* Singleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADBC9921A47FB9E0028CB43 /* Singleton.m */; };
 		4AF063911A3837C10046265D /* XMPPBandwidthMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF062961A3837C00046265D /* XMPPBandwidthMonitor.m */; };
 		4AF063921A3837C10046265D /* XMPPCoreDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF062991A3837C00046265D /* XMPPCoreDataStorage.m */; };
 		4AF063931A3837C10046265D /* XMPPFileTransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF0629D1A3837C00046265D /* XMPPFileTransfer.m */; };
@@ -296,6 +297,8 @@
 		4AD92CAE1A3EB00600719794 /* RegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistrationViewController.m; sourceTree = "<group>"; };
 		4ADBC98E1A47AD1A0028CB43 /* ManagingKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagingKeyboard.h; sourceTree = "<group>"; };
 		4ADBC98F1A47AD1A0028CB43 /* ManagingKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagingKeyboard.m; sourceTree = "<group>"; };
+		4ADBC9911A47FB9E0028CB43 /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
+		4ADBC9921A47FB9E0028CB43 /* Singleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Singleton.m; sourceTree = "<group>"; };
 		4AF062951A3837C00046265D /* XMPPBandwidthMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPBandwidthMonitor.h; sourceTree = "<group>"; };
 		4AF062961A3837C00046265D /* XMPPBandwidthMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPBandwidthMonitor.m; sourceTree = "<group>"; };
 		4AF062981A3837C00046265D /* XMPPCoreDataStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPCoreDataStorage.h; sourceTree = "<group>"; };
@@ -555,6 +558,8 @@
 				4AC2A2851A382D7200A57553 /* ViewController.m */,
 				4ADBC98E1A47AD1A0028CB43 /* ManagingKeyboard.h */,
 				4ADBC98F1A47AD1A0028CB43 /* ManagingKeyboard.m */,
+				4ADBC9911A47FB9E0028CB43 /* Singleton.h */,
+				4ADBC9921A47FB9E0028CB43 /* Singleton.m */,
 				4AD92CAD1A3EB00600719794 /* RegistrationViewController.h */,
 				4AD92CAE1A3EB00600719794 /* RegistrationViewController.m */,
 				4AC0EBF61A398659009C82AB /* FriendsViewController.h */,
@@ -1684,6 +1689,7 @@
 				4AD92CAF1A3EB00600719794 /* RegistrationViewController.m in Sources */,
 				4AF063E51A3837C10046265D /* XMPPAutoPing.m in Sources */,
 				4AC2A4161A3833EE00A57553 /* DDContextFilterLogFormatter.m in Sources */,
+				4ADBC9931A47FB9E0028CB43 /* Singleton.m in Sources */,
 				4AF063E11A3837C10046265D /* XMPPBlocking.m in Sources */,
 				4AF063D71A3837C10046265D /* XMPPMessageArchiving.xcdatamodeld in Sources */,
 				4AF0639C1A3837C10046265D /* XMPPRosterCoreDataStorage.m in Sources */,
