@@ -25,7 +25,8 @@
     self.textView.text = @"asdfa";
 //    [self queryRoster];
 
-    [self addResultSet];
+//    [self addResultSet];
+    [self sendDisco];
 }
 
 #pragma mark - 获取好友列表
@@ -62,14 +63,29 @@
 //    </iq>
     
     XMPPIQ *iq = [XMPPIQ iqWithType:@"set" to:[XMPPJID jidWithUser:nil domain:_myStream.myJID.domain resource:nil] elementID:@"limit1"];
-    DDXMLElement *query = [DDXMLElement elementWithName:@"query" xmlns:@"jabber:iq:search"];
+    DDXMLElement *query = [DDXMLElement elementWithName:@"query" xmlns:@"jabber:iq:roster"];
     [iq addChild:query];
 
-    DDXMLElement *nickName = [DDXMLElement elementWithName:@"nick" stringValue:@"test"];
-    [query addChild:nickName];
     XMPPResultSet *resultSet = [XMPPResultSet resultSetWithMax:2];
     [query addChild:resultSet];
     
+    [_myStream sendElement:iq];
+}
+
+- (void)sendDisco{
+//    <iq type='get' from='stpeter@jabber.org/roundabout' to='conference.jabber.org' id='ex2'>
+//    <query xmlns='http://jabber.org/protocol/disco#items'>
+//    <set xmlns='http://jabber.org/protocol/rsm'>
+//    <max>20</max>
+//    </set>
+//    </query>
+//    </iq>
+    
+    XMPPIQ *iq = [XMPPIQ iqWithType:@"get" to:[XMPPJID jidWithUser:nil domain:_myStream.myJID.domain resource:nil] elementID:@"disco1"];
+    DDXMLElement *query = [DDXMLElement elementWithName:@"query" xmlns:@"http://jabber.org/protocol/disco#items"];
+    [iq addChild:query];
+    XMPPResultSet *resultSet = [XMPPResultSet resultSetWithMax:2];
+    [query addChild:resultSet];
     [_myStream sendElement:iq];
 }
 
