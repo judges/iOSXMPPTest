@@ -137,10 +137,21 @@
                                             <action selector="clearButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="XbP-Gb-Ejz"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SeA-rO-D4b">
+                                        <rect key="frame" x="15" y="343" width="75" height="30"/>
+                                        <state key="normal" title="Disco&amp;rsm">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="7VR-oo-ICL" kind="show" identifier="discoTest" id="gIl-NB-8Bn"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="jok-M7-wZi" firstAttribute="top" secondItem="SeA-rO-D4b" secondAttribute="bottom" constant="4" id="1GZ-Va-UPc"/>
                                     <constraint firstItem="jok-M7-wZi" firstAttribute="top" secondItem="fo0-0W-drX" secondAttribute="bottom" constant="39" id="2Jd-Sy-pic"/>
                                     <constraint firstItem="fo0-0W-drX" firstAttribute="trailing" secondItem="TTH-Mb-r8R" secondAttribute="trailing" id="2Wk-QZ-3Yz"/>
+                                    <constraint firstItem="fo0-0W-drX" firstAttribute="leading" secondItem="SeA-rO-D4b" secondAttribute="leading" id="5dv-ro-MrG"/>
                                     <constraint firstItem="jok-M7-wZi" firstAttribute="trailing" secondItem="fo0-0W-drX" secondAttribute="trailing" constant="1" id="5lb-SZ-tUO"/>
                                     <constraint firstItem="jok-M7-wZi" firstAttribute="trailing" secondItem="vDF-bu-KJZ" secondAttribute="trailing" id="IGG-aG-6b4"/>
                                     <constraint firstItem="jok-M7-wZi" firstAttribute="top" secondItem="ybM-LB-R9v" secondAttribute="bottom" constant="4" id="IWu-Jl-AmO"/>
@@ -148,6 +159,7 @@
                                     <constraint firstItem="vDF-bu-KJZ" firstAttribute="width" secondItem="eWz-at-66h" secondAttribute="width" id="MvV-WB-kdi"/>
                                     <constraint firstItem="3Wt-zx-Boa" firstAttribute="leading" secondItem="fo0-0W-drX" secondAttribute="leading" id="NuG-hG-b56"/>
                                     <constraint firstItem="eWz-at-66h" firstAttribute="centerX" secondItem="W4M-0y-wQO" secondAttribute="centerX" id="P0P-93-aPU"/>
+                                    <constraint firstItem="SeA-rO-D4b" firstAttribute="top" secondItem="fo0-0W-drX" secondAttribute="bottom" constant="5" id="RrE-aR-H0C"/>
                                     <constraint firstItem="W4M-0y-wQO" firstAttribute="top" secondItem="eWz-at-66h" secondAttribute="bottom" constant="2" id="SYU-q2-NCA"/>
                                     <constraint firstAttribute="bottom" secondItem="TTH-Mb-r8R" secondAttribute="bottom" id="TL5-py-ft2"/>
                                     <constraint firstItem="jok-M7-wZi" firstAttribute="leading" secondItem="W4M-0y-wQO" secondAttribute="leading" id="U5o-Oz-f8v"/>
@@ -293,7 +305,57 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TIe-WF-OOa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-674" y="886.99999999999989"/>
+            <point key="canvasLocation" x="-734" y="1008"/>
+        </scene>
+        <!--Discover&RSM-->
+        <scene sceneID="afM-Cy-thJ">
+            <objects>
+                <viewController id="7VR-oo-ICL" customClass="DiscoveryViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PtA-Ks-F47"/>
+                        <viewControllerLayoutGuide type="bottom" id="TND-91-jSz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Doc-bc-d7C">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cel-d4-ocE">
+                                <rect key="frame" x="16" y="362" width="80" height="30"/>
+                                <state key="normal" title="Prev">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="prevButton:" destination="7VR-oo-ICL" eventType="touchUpInside" id="eCn-Nd-Zgp"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pfv-k9-ZSs">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Mw-rR-96D">
+                                <rect key="frame" x="224" y="362" width="80" height="30"/>
+                                <state key="normal" title="Next">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextButton:" destination="7VR-oo-ICL" eventType="touchUpInside" id="NFW-jh-FYu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Discover&amp;RSM" id="eLt-Hk-ONE"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="textView" destination="Pfv-k9-ZSs" id="hJj-Nv-KR5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZWP-Ua-N8O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-369" y="1008"/>
         </scene>
         <!--我的好友-->
         <scene sceneID="hG1-AV-JfV">

@@ -16,6 +16,7 @@
 @property (nonatomic,strong) UITextField *activeField;
 
 + (instancetype)sharedManagingKeyboard;
+- (void)extendedLayoutForView;
 /**
  *在viewWillAppear注册
  *在viewWillDisappear注销

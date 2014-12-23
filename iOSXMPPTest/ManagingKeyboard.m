@@ -29,7 +29,7 @@
     aScrollView = scrollView;
     aViewController = viewController;
     
-    [self extendedLayoutForView];
+//    [self extendedLayoutForView];
     [self registerForKeyboardNotifications];
 }
 

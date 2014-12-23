@@ -13,7 +13,7 @@
 #import <objc/runtime.h>
 #import "AutoColoseInfoDialog.h"
 #import "ManagingKeyboard.h"
-
+#import "DiscoveryViewController.h"
 
 #define kFriendID @"root"
 #define kDomain @"mit-pc"
@@ -54,6 +54,8 @@ static NSString *kPasswordKey = @"kPasswordKey";
     [Singleton sharedSingleton].textView = _textView;
     _scrollView.alwaysBounceVertical = YES;
 
+    [[ManagingKeyboard sharedManagingKeyboard] extendedLayoutForView];
+    
     NSString *string = [[NSUserDefaults standardUserDefaults] stringForKey:kFriendJIDKey];
     if (string == nil) {
         string = kFriendID;
@@ -396,6 +398,9 @@ static NSString *kPasswordKey = @"kPasswordKey";
     }else if ([segue.identifier isEqual:@"presentRegisterView"]){
         RegistrationViewController *vc = (RegistrationViewController *)segue.destinationViewController;
         vc.stream = myStream;
+    }else if([segue.identifier isEqualToString:@"discoTest"]){
+        DiscoveryViewController *vc = (DiscoveryViewController *)segue.destinationViewController;
+        vc.xmppStream = myStream;
     }
     
 }
