@@ -23,10 +23,10 @@
     self.title = @"Friends";
     
     self.textView.text = @"asdfa";
-//    [self queryRoster];
+    [self queryRoster];
 
 //    [self addResultSet];
-    [self sendDisco];
+
 }
 
 #pragma mark - 获取好友列表
@@ -52,43 +52,6 @@
     
 }
 
-- (void)addResultSet{
-//    <iq type='set' from='stpeter@jabber.org/roundabout' to='users.jabber.org' id='limit1'>
-//    <query xmlns='jabber:iq:search'>
-//    <nick>Pete</nick>
-//    <set xmlns='http://jabber.org/protocol/rsm'>
-//    <max>10</max>
-//    </set>
-//    </query>
-//    </iq>
-    
-    XMPPIQ *iq = [XMPPIQ iqWithType:@"set" to:[XMPPJID jidWithUser:nil domain:_myStream.myJID.domain resource:nil] elementID:@"limit1"];
-    DDXMLElement *query = [DDXMLElement elementWithName:@"query" xmlns:@"jabber:iq:roster"];
-    [iq addChild:query];
-
-    XMPPResultSet *resultSet = [XMPPResultSet resultSetWithMax:2];
-    [query addChild:resultSet];
-    
-    [_myStream sendElement:iq];
-}
-
-- (void)sendDisco{
-//    <iq type='get' from='stpeter@jabber.org/roundabout' to='conference.jabber.org' id='ex2'>
-//    <query xmlns='http://jabber.org/protocol/disco#items'>
-//    <set xmlns='http://jabber.org/protocol/rsm'>
-//    <max>20</max>
-//    </set>
-//    </query>
-//    </iq>
-    
-    XMPPIQ *iq = [XMPPIQ iqWithType:@"get" to:[XMPPJID jidWithUser:nil domain:_myStream.myJID.domain resource:nil] elementID:@"disco1"];
-    DDXMLElement *query = [DDXMLElement elementWithName:@"query" xmlns:@"http://jabber.org/protocol/disco#items"];
-    [iq addChild:query];
-    XMPPResultSet *resultSet = [XMPPResultSet resultSetWithMax:2];
-    [query addChild:resultSet];
-    [_myStream sendElement:iq];
-}
-
 
 - (BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq{
 //    <iq type="result"
@@ -105,14 +68,7 @@
         if ([[[iq childElement] xmlns] isEqualToString:@"jabber:iq:roster"]) {
             self.textView.text = iq.XMLString;
         }
-//        if ([@"query" isEqualToString:query.name]) {
-//            NSArray *items = [query children];
-//            for (NSXMLElement *item in items) {
-//                NSString *jid = [item attributeStringValueForName:@"jid"];
-//                XMPPJID *xmppJID = [XMPPJID jidWithString:jid];
-////                [self.roster addObject:xmppJID];
-//            }
-//        }
+
     }
     return YES;
 }

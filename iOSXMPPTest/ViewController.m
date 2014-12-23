@@ -16,11 +16,11 @@
 #import "DiscoveryViewController.h"
 
 #define kFriendID @"root"
-#define kDomain @"mit-pc"
-#define kHostName @"214.214.1.100"
+#define kDomain @"tom-pc"
+#define kHostName @"192.168.1.185"
 
-#define kUserID @"qqqqqq"
-#define kPassword @"qqqqqq"
+#define kUserID @"test_home"
+#define kPassword @"123456"
 
 static NSString *kFriendJIDKey = @"kFriendJIDKey";
 static NSString *kUserIDKey = @"kUserIDKey";
@@ -54,7 +54,10 @@ static NSString *kPasswordKey = @"kPasswordKey";
     [Singleton sharedSingleton].textView = _textView;
     _scrollView.alwaysBounceVertical = YES;
 
-    [[ManagingKeyboard sharedManagingKeyboard] extendedLayoutForView];
+    if ([UIViewController instancesRespondToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
+        self.automaticallyAdjustsScrollViewInsets = YES;
+        self.edgesForExtendedLayout = (UIRectEdgeTop | UIRectEdgeBottom);
+    }
     
     NSString *string = [[NSUserDefaults standardUserDefaults] stringForKey:kFriendJIDKey];
     if (string == nil) {
