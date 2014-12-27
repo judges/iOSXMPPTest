@@ -15,12 +15,13 @@
  */
 @property (nonatomic,strong) UITextField *activeField;
 
-+ (instancetype)sharedManagingKeyboard;
-- (void)extendedLayoutForView;
+//+ (instancetype)sharedManagingKeyboard;
+
 /**
  *在viewWillAppear注册
  *在viewWillDisappear注销
  */
-- (void)registerForKeyboardNotificationsWithScrollView:(UIScrollView *)scrollView contentsController:(UIViewController *)viewController;
++ (instancetype)managingKeyboardWithScrollView:(UIScrollView *)scrollView contentsController:(UIViewController *)viewController;
+- (void)registerForKeyboardNotifications;
 - (void)unregisterForKeyboardNotifications;
 @end

@@ -8,7 +8,7 @@
 
 #import "DiscoveryViewController.h"
 
-#define kxmlnsdiscoitems @"http://jabber.org/protocol/disco#items"
+#define kxmlnsdiscoitems @"http://jabber.org/protocol/disco#info"
 @interface DiscoveryViewController ()<XMPPStreamDelegate>{
     NSString *_last;
     NSString *_first;
@@ -39,7 +39,7 @@
     XMPPIQ *iq = [XMPPIQ iqWithType:@"get" to:[XMPPJID jidWithUser:nil domain:_xmppStream.myJID.domain resource:nil] elementID:@"disco1"];
     DDXMLElement *query = [DDXMLElement elementWithName:@"query" xmlns:kxmlnsdiscoitems];
     [iq addChild:query];
-    XMPPResultSet *resultSet = [XMPPResultSet resultSetWithMax:3 after:_last];
+    XMPPResultSet *resultSet = [XMPPResultSet resultSetWithMax:1 after:_last];
     [query addChild:resultSet];
     [_xmppStream sendElement:iq];
 }

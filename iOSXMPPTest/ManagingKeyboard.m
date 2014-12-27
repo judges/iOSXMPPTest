@@ -16,22 +16,40 @@
     UIViewController *aViewController;
 }
 
-+ (instancetype)sharedManagingKeyboard{
-    static ManagingKeyboard *sSharedManagingKeyboard = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sSharedManagingKeyboard = [[self alloc] init];
-    });
-    return sSharedManagingKeyboard;
+//+ (instancetype)sharedManagingKeyboard{
+//    static ManagingKeyboard *sSharedManagingKeyboard = nil;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        sSharedManagingKeyboard = [[self alloc] init];
+//    });
+//    return sSharedManagingKeyboard;
+//}
+
++ (instancetype)managingKeyboardWithScrollView:(UIScrollView *)scrollView contentsController:(UIViewController *)viewController{
+    return [[self alloc] initWithManagingKeyboardWithScrollView:scrollView contentsController:viewController];
 }
 
-- (void)registerForKeyboardNotificationsWithScrollView:(UIScrollView *)scrollView contentsController:(UIViewController *)viewController{
-    aScrollView = scrollView;
-    aViewController = viewController;
+- (id)initWithManagingKeyboardWithScrollView:(UIScrollView *)scrollView contentsController:(UIViewController *)viewController{
     
-//    [self extendedLayoutForView];
-    [self registerForKeyboardNotifications];
+    if (self = [super init]) {
+        aScrollView = scrollView;
+        aViewController = viewController;
+        
+        [self extendedLayoutForView];
+    }
+    
+    return self;
 }
+
+//- (void)registerForKeyboardNotificationsWithScrollView:(UIScrollView *)scrollView contentsController:(UIViewController *)viewController{
+//    aScrollView = scrollView;
+//    aViewController = viewController;
+//    
+////    [self extendedLayoutForView];
+//    [self registerForKeyboardNotifications];
+//}
+
+
 
 - (void)extendedLayoutForView{
     //使用iOS7自动延展布局
@@ -51,10 +69,10 @@
 
 - (void)unregisterForKeyboardNotifications
 {
+//    aScrollView = nil;
+//    aViewController = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-    aScrollView = nil;
-    aViewController = nil;
 }
 
 // Called when the UIKeyboardDidShowNotification is sent.

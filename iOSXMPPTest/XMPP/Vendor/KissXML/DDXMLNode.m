@@ -207,6 +207,7 @@ static void MarkDeath(void *xmlPtr, DDXMLNode *wrapper);
 **/
 - (id)initWithPrimitive:(xmlKindPtr)kindPtr owner:(DDXMLNode *)inOwner
 {
+
 	if ((self = [super init]))
 	{
 		genericPtr = kindPtr;
