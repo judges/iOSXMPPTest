@@ -10,43 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSXMPPTest/ViewController.m"
-            timestampString = "441354335.515142"
+            timestampString = "441366131.26401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "284"
-            endingLineNumber = "284"
-            landmarkName = "-xmppStream:didNotAuthenticate:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iOSXMPPTest/ViewController.m"
-            timestampString = "441354335.515142"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "324"
-            endingLineNumber = "324"
-            landmarkName = "-xmppStream:didReceiveMessage:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iOSXMPPTest/ViewController.m"
-            timestampString = "441354335.515142"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
             landmarkName = "-xmppStreamDidAuthenticate:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,12 +26,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSXMPPTest/ViewController.m"
-            timestampString = "441354335.515142"
+            timestampString = "441366131.26401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "399"
-            endingLineNumber = "399"
-            landmarkName = "-textFieldShouldReturn:"
+            startingLineNumber = "333"
+            endingLineNumber = "333"
+            landmarkName = "-xmppStream:didReceiveIQ:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOSXMPPTest/ViewController.m"
+            timestampString = "441366131.26401"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
+            landmarkName = "-xmppStreamDidDisconnect:withError:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOSXMPPTest/ViewController.m"
+            timestampString = "441366131.26401"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "408"
+            endingLineNumber = "408"
+            landmarkName = "-alertView:willDismissWithButtonIndex:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -90,13 +90,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSXMPPTest/ViewController.m"
-            timestampString = "441354335.515142"
+            timestampString = "441366131.26401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "440"
-            endingLineNumber = "440"
-            landmarkName = "@implementation ViewController"
-            landmarkType = "3">
+            startingLineNumber = "449"
+            endingLineNumber = "449"
+            landmarkName = "-textFieldDidEndEditing:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -106,12 +106,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSXMPPTest/ViewController.m"
-            timestampString = "441354335.515142"
+            timestampString = "441366131.26401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
-            landmarkName = "-presenceAvailable:"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "-clearButton:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSXMPPTest/ViewController.m"
-            timestampString = "441354335.515142"
+            timestampString = "441366131.26401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
+            startingLineNumber = "328"
+            endingLineNumber = "328"
             landmarkName = "-xmppStream:didReceiveIQ:"
             landmarkType = "5">
          </BreakpointContent>
@@ -250,13 +250,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSXMPPTest/ViewController.m"
-            timestampString = "441354335.515142"
+            timestampString = "441366131.26401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "252"
-            endingLineNumber = "252"
-            landmarkName = "@implementation ViewController"
-            landmarkType = "3">
+            startingLineNumber = "261"
+            endingLineNumber = "261"
+            landmarkName = "-xmppStreamDidConnect:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -298,13 +298,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSXMPPTest/ViewController.m"
-            timestampString = "441354335.515142"
+            timestampString = "441366131.26401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "370"
-            endingLineNumber = "370"
-            landmarkName = "@implementation ViewController"
-            landmarkType = "3">
+            startingLineNumber = "379"
+            endingLineNumber = "379"
+            landmarkName = "-generateNewUUIDResource"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -330,12 +330,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSXMPPTest/ViewController.m"
-            timestampString = "441281150.035546"
+            timestampString = "441366131.26401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
-            landmarkName = "-connect:"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
+            landmarkName = "-updateReceiptsStatus:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -346,27 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSXMPPTest/ViewController.m"
-            timestampString = "441354335.515142"
+            timestampString = "441366131.26401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
-            landmarkName = "-xmppStreamDidConnect:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iOSXMPPTest/ViewController.m"
-            timestampString = "441354335.515142"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
             landmarkName = "-sendMessage:toUser:"
             landmarkType = "5">
          </BreakpointContent>
@@ -378,12 +362,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSXMPPTest/ViewController.m"
-            timestampString = "441354335.515142"
+            timestampString = "441366131.26401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
-            landmarkName = "-xmppStreamDidDisconnect:withError:"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "-sendMessage:toUser:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOSXMPPTest/ViewController.m"
+            timestampString = "441366131.26401"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
+            landmarkName = "-xmppStream:willSecureWithSettings:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -409,7 +409,7 @@
                   symbolName = "-[XMPPStream disconnect]"
                   moduleName = "iOSXMPPTest"
                   urlString = "file:///Users/Macmini5/Documents/iOSXMPPTest/iOSXMPPTest/XMPP/Core/XMPPStream.m"
-                  timestampString = "441361369.899734"
+                  timestampString = "441366779.968342"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1387"
@@ -423,7 +423,7 @@
                   symbolName = "__24-[XMPPStream disconnect]_block_invoke"
                   moduleName = "iOSXMPPTest"
                   urlString = "file:///Users/Macmini5/Documents/iOSXMPPTest/iOSXMPPTest/XMPP/Core/XMPPStream.m"
-                  timestampString = "441361369.899887"
+                  timestampString = "441366779.968499"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1387"
@@ -440,12 +440,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSXMPPTest/ViewController.m"
-            timestampString = "441354335.515142"
+            timestampString = "441366131.26401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
-            landmarkName = "-xmppStreamDidDisconnect:withError:"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
+            landmarkName = "-xmppStream:willSecureWithSettings:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -456,12 +456,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSXMPPTest/ViewController.m"
-            timestampString = "441281150.035546"
+            timestampString = "441366131.26401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
-            landmarkName = "-connect:"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "-setMessageDeliveryReceipts"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -472,12 +472,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSXMPPTest/ViewController.m"
-            timestampString = "441354335.515142"
+            timestampString = "441366131.26401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "410"
-            endingLineNumber = "410"
-            landmarkName = "-textFieldDidEndEditing:"
+            startingLineNumber = "419"
+            endingLineNumber = "419"
+            landmarkName = "-textFieldShouldReturn:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -584,12 +584,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSXMPPTest/ViewController.m"
-            timestampString = "441281150.035546"
+            timestampString = "441366131.26401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
-            landmarkName = "-sendButtonClick:"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
+            landmarkName = "-connect:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -614,13 +614,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSXMPPTest/ViewController.m"
-            timestampString = "441354335.515142"
+            timestampString = "441366131.26401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "452"
-            endingLineNumber = "452"
-            landmarkName = "@implementation ViewController"
-            landmarkType = "3">
+            startingLineNumber = "461"
+            endingLineNumber = "461"
+            landmarkName = "-playAlertSound"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -676,12 +676,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSXMPPTest/ViewController.m"
-            timestampString = "441354335.515142"
+            timestampString = "441366131.26401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "293"
-            endingLineNumber = "293"
-            landmarkName = "-xmppStream:didSendMessage:"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
+            landmarkName = "-xmppStream:didNotAuthenticate:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -692,12 +692,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSXMPPTest/ViewController.m"
-            timestampString = "441354335.515142"
+            timestampString = "441366131.26401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "287"
-            endingLineNumber = "287"
-            landmarkName = "-xmppStream:willSendMessage:"
+            startingLineNumber = "296"
+            endingLineNumber = "296"
+            landmarkName = "-xmppStream:didNotAuthenticate:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -756,11 +756,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSXMPPTest/ViewController.m"
-            timestampString = "441354335.515142"
+            timestampString = "441366131.26401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
             landmarkName = "-sendMessage:toUser:"
             landmarkType = "5">
          </BreakpointContent>
@@ -772,11 +772,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSXMPPTest/ViewController.m"
-            timestampString = "441354335.515142"
+            timestampString = "441366131.26401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
             landmarkName = "-sendMessage:toUser:"
             landmarkType = "5">
          </BreakpointContent>
@@ -848,7 +848,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSXMPPTest/XMPP/Core/XMPPStream.m"
@@ -858,6 +858,38 @@
             startingLineNumber = "4497"
             endingLineNumber = "4497"
             landmarkName = "-xmppParser:didReadElement:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOSXMPPTest/XMPP/Extensions/XEP-0184/XMPPMessageDeliveryReceipts.m"
+            timestampString = "441366524.960092"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "-xmppStream:didReceiveMessage:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOSXMPPTest/XMPP/Extensions/XEP-0184/XMPPMessageDeliveryReceipts.m"
+            timestampString = "441366525.9687"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "-xmppStream:willSendMessage:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

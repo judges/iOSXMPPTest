@@ -47,6 +47,7 @@ static NSString *kDomainKey = @"kDomainKey";
 
 @property (strong, nonatomic) IBOutlet UILabel *byteSendAndRecvLabel;
 
+@property (strong, nonatomic) IBOutlet UILabel *receiptsLabel;
 
 @property (strong, nonatomic) IBOutlet UITextField *hostNameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *domainNameTextField;
@@ -109,7 +110,7 @@ static NSString *kDomainKey = @"kDomainKey";
     myStream = [self createXMPPStreamWithJID:senderID];
 
     [self setReconnect:myStream];
-    
+    [self setMessageDeliveryReceipts];
     [self connect:myStream];
     
     [self updateBytesSendAndRecvLabel];
@@ -148,6 +149,23 @@ static NSString *kDomainKey = @"kDomainKey";
     [reconnect activate:stream];
     [reconnect addDelegate:self delegateQueue:dispatch_get_main_queue()];
 
+}
+
+//加载回执
+- (void)setMessageDeliveryReceipts{
+    XMPPMessageDeliveryReceipts *mesDR = [[XMPPMessageDeliveryReceipts alloc] init];
+    [mesDR setAutoSendMessageDeliveryReceipts:YES];
+    [mesDR setAutoSendMessageDeliveryRequests:YES];
+    [mesDR activate:myStream];
+
+}
+
+- (void)updateReceiptsStatus:(BOOL)flag{
+    if (flag) {
+        self.receiptsLabel.text = @"已接收";
+    }else{
+        self.receiptsLabel.text = @"发送";
+    }
 }
 
 - (void)connect:(XMPPStream *)stream{
@@ -190,14 +208,14 @@ static NSString *kDomainKey = @"kDomainKey";
     self.textView.text = [self.textView.text stringByAppendingString:[NSString stringWithFormat:@"\n我(%@)：%@",myStream.myJID.user,string]];
     [self.textView scrollRectToVisible:CGRectMake(0, self.textView.contentSize.height - 40, self.textView.bounds.size.width, 40) animated:NO];
     
-    NSXMLElement *request = [NSXMLElement elementWithName:@"request" xmlns:@"urn:xmpp:receipts"];
+//    NSXMLElement *request = [NSXMLElement elementWithName:@"request" xmlns:@"urn:xmpp:receipts"];
     NSXMLElement *body = [NSXMLElement elementWithName:@"body" stringValue:string];
     NSXMLElement *message = [NSXMLElement elementWithName:@"message"];
     [message addAttributeWithName:@"type" stringValue:@"chat"];
     [message addAttributeWithName:@"id" stringValue:[[myStream generateUUID] substringToIndex:10]];
     [message addAttributeWithName:@"to" stringValue:user];
     [message addChild:body];
-    [message addChild:request];
+//    [message addChild:request];
 //    [myStream sendElement:message];
     XMPPElementReceipt *receipt = [XMPPElementReceipt new];
     [myStream sendElement:message andGetReceipt: &receipt];
@@ -284,6 +302,7 @@ static NSString *kDomainKey = @"kDomainKey";
 }
 
 - (XMPPMessage *)xmppStream:(XMPPStream *)sender willSendMessage:(XMPPMessage *)message{
+    [self updateReceiptsStatus:NO];
     return message;
 }
 
