@@ -16,4 +16,5 @@
 #import "XMPPPubSub.h"
 #import "XMPPResultSet.h"
 #import "XMPPMessageDeliveryReceipts.h"
+#import "XMPPMessage+XEP_0184.h"
 #import "XMPPCapabilities.h"

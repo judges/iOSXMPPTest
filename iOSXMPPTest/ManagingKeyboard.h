@@ -10,14 +10,7 @@
 ///键盘共享文本输入框滚动定位
 @interface ManagingKeyboard : NSObject<UITextFieldDelegate>
 /**
- *在textFieldDidEndEditing设为nil
- *textFieldDidBeginEditing
- */
-@property (nonatomic,strong) UITextField *activeField;
-
-//+ (instancetype)sharedManagingKeyboard;
-
-/**
+ *在viewDidLoad创建
  *在viewWillAppear注册
  *在viewWillDisappear注销
  */

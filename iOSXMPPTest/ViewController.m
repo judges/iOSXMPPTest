@@ -15,12 +15,12 @@
 #import "ManagingKeyboard.h"
 #import "DiscoveryViewController.h"
 
-#define kFriendID @"root"
+#define kFriendID @"20105"
 #define kDomain @"mit-pc"
 #define kHostName @"214.214.1.100"
 
-#define kUserID @"qqqqqq"
-#define kPassword @"qqqqqq"
+#define kUserID @"20064"
+#define kPassword @"111111"
 
 static NSString *kFriendJIDKey = @"kFriendJIDKey";
 static NSString *kUserIDKey = @"kUserIDKey";
@@ -109,11 +109,21 @@ static NSString *kDomainKey = @"kDomainKey";
     
     myStream = [self createXMPPStreamWithJID:senderID];
 
+    [self receiptsLabelAddLeftView];
+    
     [self setReconnect:myStream];
-    [self setMessageDeliveryReceipts];
+//    [self setMessageDeliveryReceipts];
     [self connect:myStream];
     
     [self updateBytesSendAndRecvLabel];
+}
+
+- (void)receiptsLabelAddLeftView{
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
+    label.backgroundColor = [UIColor clearColor];
+    self.receiptsLabel = label;
+    self.friendTextField.leftViewMode = UITextFieldViewModeAlways;
+    self.friendTextField.leftView = label;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -134,7 +144,8 @@ static NSString *kDomainKey = @"kDomainKey";
     //Configuring the connection
     stream.hostName = _hostName;
  
-    XMPPJID *myJID = [XMPPJID jidWithUser:jid domain:_domain resource:@"AX"];
+    
+    XMPPJID *myJID = [XMPPJID jidWithUser:jid domain:_domain resource:@"ax"];
     
     stream.myJID = myJID;
 
@@ -155,16 +166,18 @@ static NSString *kDomainKey = @"kDomainKey";
 - (void)setMessageDeliveryReceipts{
     XMPPMessageDeliveryReceipts *mesDR = [[XMPPMessageDeliveryReceipts alloc] init];
     [mesDR setAutoSendMessageDeliveryReceipts:YES];
-    [mesDR setAutoSendMessageDeliveryRequests:YES];
+//    [mesDR setAutoSendMessageDeliveryRequests:YES];
     [mesDR activate:myStream];
 
 }
 
 - (void)updateReceiptsStatus:(BOOL)flag{
     if (flag) {
+        self.receiptsLabel.textColor = [UIColor greenColor];
         self.receiptsLabel.text = @"已接收";
     }else{
-        self.receiptsLabel.text = @"发送";
+        self.receiptsLabel.textColor = [UIColor grayColor];
+        self.receiptsLabel.text = @"已发送";
     }
 }
 
@@ -181,7 +194,7 @@ static NSString *kDomainKey = @"kDomainKey";
 }
 - (IBAction)clearButton:(id)sender {
     self.textView.text = nil;
-    [myStream resetByteCountPerConnection];
+    [myStream setResetByteCountPerConnection:YES];
     self.byteSendAndRecvLabel.text = [NSString stringWithFormat:@"S:%dB-R:%dB",0,0];
 }
 
@@ -200,7 +213,7 @@ static NSString *kDomainKey = @"kDomainKey";
     [myStream sendElement:presence];
     [myStream disconnectAfterSending];
 }
-
+/*
 - (void)sendMessage:(NSString *) string toUser:(NSString *) user {
 //    <message type="chat" to="xiaoming@example.com">
 //    　　<body>Hello World!<body />
@@ -208,17 +221,21 @@ static NSString *kDomainKey = @"kDomainKey";
     self.textView.text = [self.textView.text stringByAppendingString:[NSString stringWithFormat:@"\n我(%@)：%@",myStream.myJID.user,string]];
     [self.textView scrollRectToVisible:CGRectMake(0, self.textView.contentSize.height - 40, self.textView.bounds.size.width, 40) animated:NO];
     
-//    NSXMLElement *request = [NSXMLElement elementWithName:@"request" xmlns:@"urn:xmpp:receipts"];
-    NSXMLElement *body = [NSXMLElement elementWithName:@"body" stringValue:string];
-    NSXMLElement *message = [NSXMLElement elementWithName:@"message"];
-    [message addAttributeWithName:@"type" stringValue:@"chat"];
-    [message addAttributeWithName:@"id" stringValue:[[myStream generateUUID] substringToIndex:10]];
+    
+    XMPPMessage *message = [XMPPMessage messageWithType:@"chat" to:nil elementID:[myStream generateUUID]];
+//    [message addAttributeWithName:@"from" stringValue:myStream.myJID.bare];
     [message addAttributeWithName:@"to" stringValue:user];
-    [message addChild:body];
-//    [message addChild:request];
-//    [myStream sendElement:message];
-    XMPPElementReceipt *receipt = [XMPPElementReceipt new];
-    [myStream sendElement:message andGetReceipt: &receipt];
+    
+    
+    [message addBody:string];
+//    [message addReceiptRequest];
+    
+    
+    [myStream sendElement:message];
+//    XMPPElementReceipt *receipt = [XMPPElementReceipt new];
+//    [myStream sendElement:message andGetReceipt: &receipt];
+    
+    [self updateReceiptsStatus:NO];
     
     
 //    dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -226,8 +243,33 @@ static NSString *kDomainKey = @"kDomainKey";
 //            NSLog(@"%s,%s,%d",__FILE__,__FUNCTION__,__LINE__);
 //        }
 //    });
-//    
+//
+
 }
+ */
+- (void)sendMessage:(NSString *) string toUser:(NSString *) user {
+
+    self.textView.text = [self.textView.text stringByAppendingString:[NSString stringWithFormat:@"\n我(%@)：%@",myStream.myJID.user,string]];
+    [self.textView scrollRectToVisible:CGRectMake(0, self.textView.contentSize.height - 40, self.textView.bounds.size.width, 40) animated:NO];
+    
+    
+
+    
+    XMPPMessage *message = [XMPPMessage messageWithType:@"chat" to:nil elementID:[myStream generateUUID]];
+    [message addAttributeWithName:@"from" stringValue:myStream.myJID.full];
+    [message addAttributeWithName:@"to" stringValue:user];
+    
+    [message setChildren:@[[DDXMLElement elementWithName:@"OpLevel" stringValue:@"1"],
+                           [DDXMLElement elementWithName:@"MessageType" stringValue:@"0"],
+                           [DDXMLElement elementWithName:@"Contents" stringValue:string],
+                           ]];
+    
+    [myStream sendElement:message];
+    
+    [self updateReceiptsStatus:NO];
+    
+}
+
 
 #pragma mark - XMPPStreamDelegate
 
@@ -239,11 +281,17 @@ static NSString *kDomainKey = @"kDomainKey";
 //    if ([myStream supportsAnonymousAuthentication]) {
 //        [myStream authenticateAnonymously:&error];
 //    }
-  
+
         
         self.unavailableButton.enabled = YES;
         self.availableButton.enabled = NO;
    
+//    if ([sender supportsStartTLS]) {
+//        if (![sender secureConnection:&error]) {
+//            NSLog(@"%s,%@",__FUNCTION__,error.userInfo);
+//        }
+//    }
+    
 
     
     id<XMPPSASLAuthentication> auth = nil;
@@ -270,6 +318,51 @@ static NSString *kDomainKey = @"kDomainKey";
 
 
 - (void)xmppStream:(XMPPStream *)sender willSecureWithSettings:(NSMutableDictionary *)settings{
+    
+//    [settings setObject:@(YES) forKey:(NSString *)GCDAsyncSocketManuallyEvaluateTrust];
+    
+//    if (allowSelfSignedCertificates){
+//        [settings setObject:[NSNumber numberWithBool:YES] forKey:(NSString *)kCFStreamSSLAllowsAnyRoot];
+//    }
+    
+//    if (allowSSLHostNameMismatch)
+//    {
+//        [settings setObject:[NSNull null] forKey:(NSString *)kCFStreamSSLPeerName];
+//    }else{
+        // Google does things incorrectly (does not conform to RFC).
+        // Because so many people ask questions about this (assume xmpp framework is broken),
+        // I've explicitly added code that shows how other xmpp clients "do the right thing"
+        // when connecting to a google server (gmail, or google apps for domains).
+        
+//        NSString *expectedCertName = nil;
+//        
+//        NSString *serverDomain = sender.hostName;
+//        NSString *virtualDomain = [sender.myJID domain];
+//        
+//        if ([serverDomain isEqualToString:@"talk.google.com"]){
+//            if ([virtualDomain isEqualToString:@"gmail.com"]){
+//                expectedCertName = virtualDomain;
+//            }else{
+//                expectedCertName = serverDomain;
+//            }
+//        }else if (serverDomain == nil){
+//            expectedCertName = virtualDomain;
+//        }else{
+//            expectedCertName = serverDomain;
+//        }
+//        
+//        if (expectedCertName){
+//            [settings setObject:expectedCertName forKey:(NSString *)kCFStreamSSLPeerName];
+//        }
+    
+}
+
+- (void)xmppStream:(XMPPStream *)sender didReceiveTrust:(SecTrustRef)trust
+ completionHandler:(void (^)(BOOL shouldTrustPeer))completionHandler{
+    
+}
+
+- (void)xmppStreamDidSecure:(XMPPStream *)sender{
     
 }
 
@@ -341,8 +434,8 @@ static NSString *kDomainKey = @"kDomainKey";
     return YES;
 }
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message{
-    NSString *string = [[message elementForName:@"body"] stringValue];
-    if (string != nil) {
+//    NSString *string = [[message elementForName:@"body"] stringValue];
+//    if (string != nil) {
         [self playAlertSound];
 
         NSString *ta = [message attributeStringValueForName:@"from" withDefaultValue:@"Ta"];
@@ -351,11 +444,15 @@ static NSString *kDomainKey = @"kDomainKey";
         if ([scanner scanUpToString:@"@" intoString:&newTa]) {
             ta = newTa;
         }
-        self.textView.text = [self.textView.text stringByAppendingString:[NSString stringWithFormat:@"\n%@：%@",ta,string]];
+        self.textView.text = [self.textView.text stringByAppendingString:[NSString stringWithFormat:@"\n%@：%@",ta,[message body]]];
         [self.textView scrollRectToVisible:CGRectMake(0, self.textView.contentSize.height - 40, self.textView.bounds.size.width, 40) animated:NO];
         
-    }
+//    }
     [self updateBytesSendAndRecvLabel];
+    
+    if ([message hasReceiptResponse]) {
+        [self updateReceiptsStatus:YES];
+    }
 }
 
 - (void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence{
@@ -371,20 +468,6 @@ static NSString *kDomainKey = @"kDomainKey";
     return [self generateNewUUIDResource];
 }
 
-- (NSString *)generateNewUUIDResource{
-    NSString *uuid = [[[NSUUID UUID].UUIDString substringWithRange:NSMakeRange(0, 8)] lowercaseString];
-    UIDevice *device = [UIDevice currentDevice];
-    NSString *resource = [NSString stringWithFormat:@"%@%@",device.model,uuid];
-    return resource;
-}
-
-- (void)updateBytesSendAndRecvLabel{
-    uint64_t bytesSent,bytesReceived;
-    
-    [myStream getNumberOfBytesSent:&bytesSent numberOfBytesReceived:&bytesReceived];
-    
-    self.byteSendAndRecvLabel.text = [NSString stringWithFormat:@"S:%lluB-R:%lluB",bytesSent,bytesReceived];
-}
 
 #pragma mark - XMPPReconnectDelegate
 
@@ -427,13 +510,13 @@ static NSString *kDomainKey = @"kDomainKey";
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
-    _mngKB.activeField = nil;
+//    _mngKB.activeField = nil;
     
     if (textField == self.friendTextField) {
         [[NSUserDefaults standardUserDefaults] setObject:textField.text forKey:kFriendJIDKey];
     }else if (textField == self.senderIDTextField){
         [[NSUserDefaults standardUserDefaults] setObject:textField.text forKey:kUserIDKey];
-        myStream.myJID = [XMPPJID jidWithUser:textField.text domain:_domain resource:@"AX"];
+        myStream.myJID = [XMPPJID jidWithUser:textField.text domain:_domain resource:@"ax"];
     }else if (textField == self.senderPasswordTextField){
         [[NSUserDefaults standardUserDefaults] setObject:textField.text forKey:kPasswordKey];
         password = textField.text;
@@ -443,7 +526,7 @@ static NSString *kDomainKey = @"kDomainKey";
     }else if (textField == self.domainNameTextField){
         [[NSUserDefaults standardUserDefaults] setObject:textField.text forKey:kDomainKey];
         _domain = textField.text;
-        myStream.myJID = [XMPPJID jidWithUser:textField.text domain:_domain resource:@"AX"];
+        myStream.myJID = [XMPPJID jidWithUser:textField.text domain:_domain resource:@"ax"];
 
     }
     
@@ -452,7 +535,7 @@ static NSString *kDomainKey = @"kDomainKey";
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    _mngKB.activeField = textField;
+//    _mngKB.activeField = textField;
 }
 
 
@@ -484,6 +567,21 @@ static NSString *kDomainKey = @"kDomainKey";
         vc.xmppStream = myStream;
     }
     
+}
+
+- (NSString *)generateNewUUIDResource{
+    NSString *uuid = [[[NSUUID UUID].UUIDString substringWithRange:NSMakeRange(0, 8)] lowercaseString];
+    UIDevice *device = [UIDevice currentDevice];
+    NSString *resource = [NSString stringWithFormat:@"%@%@",device.model,uuid];
+    return resource;
+}
+
+- (void)updateBytesSendAndRecvLabel{
+    uint64_t bytesSent,bytesReceived;
+    
+    [myStream getNumberOfBytesSent:&bytesSent numberOfBytesReceived:&bytesReceived];
+    
+    self.byteSendAndRecvLabel.text = [NSString stringWithFormat:@"S:%lluB-R:%lluB",bytesSent,bytesReceived];
 }
 
 @end

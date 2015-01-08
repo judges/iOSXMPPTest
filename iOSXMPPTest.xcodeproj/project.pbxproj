@@ -67,6 +67,7 @@
 		4ADBC9901A47AD1A0028CB43 /* ManagingKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADBC98F1A47AD1A0028CB43 /* ManagingKeyboard.m */; };
 		4ADBC9931A47FB9E0028CB43 /* Singleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADBC9921A47FB9E0028CB43 /* Singleton.m */; };
 		4AEE83FA1A49787700DF3809 /* DiscoveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEE83F91A49787700DF3809 /* DiscoveryViewController.m */; };
+		4AEFBDE31A5A8D8E00779B98 /* 77k.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4AEFBDE21A5A8D8E00779B98 /* 77k.jpg */; };
 		4AF063911A3837C10046265D /* XMPPBandwidthMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF062961A3837C00046265D /* XMPPBandwidthMonitor.m */; };
 		4AF063921A3837C10046265D /* XMPPCoreDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF062991A3837C00046265D /* XMPPCoreDataStorage.m */; };
 		4AF063931A3837C10046265D /* XMPPFileTransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF0629D1A3837C00046265D /* XMPPFileTransfer.m */; };
@@ -302,6 +303,7 @@
 		4ADBC9921A47FB9E0028CB43 /* Singleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Singleton.m; sourceTree = "<group>"; };
 		4AEE83F81A49787700DF3809 /* DiscoveryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoveryViewController.h; sourceTree = "<group>"; };
 		4AEE83F91A49787700DF3809 /* DiscoveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoveryViewController.m; sourceTree = "<group>"; };
+		4AEFBDE21A5A8D8E00779B98 /* 77k.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 77k.jpg; sourceTree = "<group>"; };
 		4AF062951A3837C00046265D /* XMPPBandwidthMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPBandwidthMonitor.h; sourceTree = "<group>"; };
 		4AF062961A3837C00046265D /* XMPPBandwidthMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPBandwidthMonitor.m; sourceTree = "<group>"; };
 		4AF062981A3837C00046265D /* XMPPCoreDataStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPCoreDataStorage.h; sourceTree = "<group>"; };
@@ -571,6 +573,7 @@
 				4AEE83F91A49787700DF3809 /* DiscoveryViewController.m */,
 				4AF08CBA1A440AA2001BBA52 /* AutoColoseInfoDialog.h */,
 				4AF08CBB1A440AA2001BBA52 /* AutoColoseInfoDialog.m */,
+				4AEFBDE21A5A8D8E00779B98 /* 77k.jpg */,
 				4AF08CBD1A445954001BBA52 /* XMPP(IM)Roster.txt */,
 				4AC2A2871A382D7200A57553 /* Main.storyboard */,
 				4AC2A28A1A382D7200A57553 /* Images.xcassets */,
@@ -1538,6 +1541,7 @@
 				TargetAttributes = {
 					4AC2A2761A382D7200A57553 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = W77JN945A5;
 					};
 					4AC2A2921A382D7300A57553 = {
 						CreatedOnToolsVersion = 6.1;
@@ -1570,6 +1574,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AC2A2891A382D7200A57553 /* Main.storyboard in Resources */,
+				4AEFBDE31A5A8D8E00779B98 /* 77k.jpg in Resources */,
 				4AC2A28E1A382D7200A57553 /* LaunchScreen.xib in Resources */,
 				4A5859AA1A39A7CE001223C3 /* incoming.wav in Resources */,
 				4AC2A4191A3833EE00A57553 /* README.txt in Resources */,
@@ -1873,6 +1878,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = iOSXMPPTest/iOSXMPPTest_Prefix.pch;
 				INFOPLIST_FILE = iOSXMPPTest/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";
@@ -1889,6 +1895,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PREFIX_HEADER = iOSXMPPTest/iOSXMPPTest_Prefix.pch;
 				INFOPLIST_FILE = iOSXMPPTest/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "";

@@ -36,7 +36,7 @@
     //    </query>
     //    </iq>
     
-    XMPPIQ *iq = [XMPPIQ iqWithType:@"get" to:[XMPPJID jidWithUser:@"tom2" domain:_xmppStream.myJID.domain resource:@"ax"] elementID:@"disco1"];
+    XMPPIQ *iq = [XMPPIQ iqWithType:@"get" to:[XMPPJID jidWithUser:nil domain:_xmppStream.myJID.domain resource:nil] elementID:@"disco1"];
     DDXMLElement *query = [DDXMLElement elementWithName:@"query" xmlns:kxmlnsdiscoitems];
     [iq addChild:query];
 //    XMPPResultSet *resultSet = [XMPPResultSet resultSetWithMax:1 after:_last];
@@ -53,7 +53,7 @@
     //    </query>
     //    </iq>
     
-    XMPPIQ *iq = [XMPPIQ iqWithType:@"get" to:[XMPPJID jidWithUser:@"tom2" domain:_xmppStream.myJID.domain resource:nil] elementID:@"disco1"];
+    XMPPIQ *iq = [XMPPIQ iqWithType:@"get" to:[XMPPJID jidWithUser:@"tom1" domain:_xmppStream.myJID.domain resource:@"androidQX6EKsL6"] elementID:@"disco1"];
     DDXMLElement *query = [DDXMLElement elementWithName:@"query" xmlns:kxmlnsdiscoitems];
     [iq addChild:query];
 //    XMPPResultSet *resultSet = [XMPPResultSet resultSetWithMax:1 before:_first];

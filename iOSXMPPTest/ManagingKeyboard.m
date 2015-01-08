@@ -14,16 +14,12 @@
     BOOL isIOS7;
     UIScrollView *aScrollView;
     UIViewController *aViewController;
+    UITextField *_activeField;
 }
 
-//+ (instancetype)sharedManagingKeyboard{
-//    static ManagingKeyboard *sSharedManagingKeyboard = nil;
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        sSharedManagingKeyboard = [[self alloc] init];
-//    });
-//    return sSharedManagingKeyboard;
-//}
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 + (instancetype)managingKeyboardWithScrollView:(UIScrollView *)scrollView contentsController:(UIViewController *)viewController{
     return [[self alloc] initWithManagingKeyboardWithScrollView:scrollView contentsController:viewController];
@@ -36,20 +32,18 @@
         aViewController = viewController;
         
         [self extendedLayoutForView];
+        
+        [[NSNotificationCenter defaultCenter] addObserverForName:UITextFieldTextDidBeginEditingNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+            _activeField = note.object;
+        }];
+        
+        [[NSNotificationCenter defaultCenter] addObserverForName:UITextFieldTextDidEndEditingNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+            _activeField = nil;
+        }];
     }
     
     return self;
 }
-
-//- (void)registerForKeyboardNotificationsWithScrollView:(UIScrollView *)scrollView contentsController:(UIViewController *)viewController{
-//    aScrollView = scrollView;
-//    aViewController = viewController;
-//    
-////    [self extendedLayoutForView];
-//    [self registerForKeyboardNotifications];
-//}
-
-
 
 - (void)extendedLayoutForView{
     //使用iOS7自动延展布局
@@ -69,8 +63,6 @@
 
 - (void)unregisterForKeyboardNotifications
 {
-//    aScrollView = nil;
-//    aViewController = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
@@ -104,15 +96,4 @@
     aScrollView.scrollIndicatorInsets = contentInsets;
 }
 
-#pragma mark - UITextFieldDelegate
-
-//- (void)textFieldDidEndEditing:(UITextField *)textField
-//{
-//    activeField = nil;
-//}
-//
-//- (void)textFieldDidBeginEditing:(UITextField *)textField
-//{
-//    activeField = textField;
-//}
 @end
