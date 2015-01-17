@@ -213,7 +213,7 @@ static NSString *kDomainKey = @"kDomainKey";
     [myStream sendElement:presence];
     [myStream disconnectAfterSending];
 }
-/*
+
 - (void)sendMessage:(NSString *) string toUser:(NSString *) user {
 //    <message type="chat" to="xiaoming@example.com">
 //    　　<body>Hello World!<body />
@@ -231,22 +231,22 @@ static NSString *kDomainKey = @"kDomainKey";
 //    [message addReceiptRequest];
     
     
-    [myStream sendElement:message];
-//    XMPPElementReceipt *receipt = [XMPPElementReceipt new];
-//    [myStream sendElement:message andGetReceipt: &receipt];
+//    [myStream sendElement:message];
+    XMPPElementReceipt *receipt = [XMPPElementReceipt new];
+    [myStream sendElement:message andGetReceipt: &receipt];
     
     [self updateReceiptsStatus:NO];
     
     
-//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//        if ([receipt wait:0]) {
-//            NSLog(@"%s,%s,%d",__FILE__,__FUNCTION__,__LINE__);
-//        }
-//    });
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        if ([receipt wait:0]) {
+            NSLog(@"%s,%s,%d",__FILE__,__FUNCTION__,__LINE__);
+        }
+    });
 //
 
 }
- */
+ /*
 - (void)sendMessage:(NSString *) string toUser:(NSString *) user {
 
     self.textView.text = [self.textView.text stringByAppendingString:[NSString stringWithFormat:@"\n我(%@)：%@",myStream.myJID.user,string]];
@@ -269,7 +269,7 @@ static NSString *kDomainKey = @"kDomainKey";
     [self updateReceiptsStatus:NO];
     
 }
-
+*/
 
 #pragma mark - XMPPStreamDelegate
 
