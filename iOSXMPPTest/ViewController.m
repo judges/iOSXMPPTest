@@ -61,11 +61,15 @@ static NSString *kDomainKey = @"kDomainKey";
 - (void)sayHello{
     NSLog(@"Hello");
 }
+- (void)sayByeBye{
+    NSLog(@"ByeBye");
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [Singleton sharedSingleton].textView = _textView;
     _scrollView.alwaysBounceVertical = YES;
     [self sayHello];
+    [self sayByeBye];
     _mngKB = [ManagingKeyboard managingKeyboardWithScrollView:_scrollView contentsController:self];
     
     NSString *string = [[NSUserDefaults standardUserDefaults] stringForKey:kFriendJIDKey];
