@@ -60,6 +60,8 @@ static NSString *kDomainKey = @"kDomainKey";
 @implementation ViewController
 - (void)sayHello{
     NSLog(@"Hello");
+    //newFirst2
+    NSLog(@"newFirst2");
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
